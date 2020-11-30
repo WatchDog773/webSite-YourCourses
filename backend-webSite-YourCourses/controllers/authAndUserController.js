@@ -6,11 +6,13 @@ const router = express.Router();
 const authAndUserModel = require("../models/authAndUser");
 const modelAuthAndUser = new authAndUserModel();
 
-// Signin
+// Sign in
 router.post("/signin", async (req, res, next) => {
   try {
     const { email, password, passwordVerify } = req.body;
-    if (!password) {
+    if (!email) {
+      res.status(400).json({ mensaje: "Debe tener un correo electrónico" });
+    } else if (!password) {
       res.status(400).json({ mensaje: "Debe tener una contraseña" });
     } else if (!passwordVerify) {
       res.status(400).json({ mensaje: "Debe confirmar la contraseña" });
