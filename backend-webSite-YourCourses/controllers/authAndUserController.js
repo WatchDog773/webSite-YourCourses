@@ -2,9 +2,15 @@
 const express = require("express");
 const router = express.Router();
 
+// Importamos passport
+const passport = require("passport");
+
 // Hacemos referencia a la clase
 const authAndUserModel = require("../models/authAndUser");
 const modelAuthAndUser = new authAndUserModel();
+
+// Exportar la configuración de seguridad
+const securityConfig = require("../config/security");
 
 // Sign in
 router.post("/signin", async (req, res, next) => {
@@ -26,6 +32,24 @@ router.post("/signin", async (req, res, next) => {
     console.log(error);
     res.status(500).json({ mensaje: "algo salio mal" });
   }
+});
+
+router.post("/login", async (req, res, next) => {
+  try {
+    // Extraer el email del body
+    const { email } = req.body;
+    //console.log(email);
+    // Crear el token
+    let token = await securityConfig.getToken({ email });
+    res.status(200).json(token);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ mensaje: "algo salio mal" });
+  }
+});
+
+router.get("/test", securityConfig.verifyUser, (req, res, next) => {
+  res.send("Cargo");
 });
 
 module.exports = router;
