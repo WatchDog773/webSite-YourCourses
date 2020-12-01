@@ -15,13 +15,13 @@ const extractJWT = require("passport-jwt").ExtractJwt;
 const jWT = require("jsonwebtoken");
 
 // Expiracion
-const expirationTime = 60 * 3; // Es en segundos
+const expirationTime = 60 * 3; // Es en segundos (3 minutos de expiracion)
 
-exports.getToken = (user) => {
+exports.getToken = (data) => {
   /*   console.log(
     `email: ${email}, secret: ${process.env.SECRETKEY}, expiracion: ${expirationTime}`
   ); */
-  return jWT.sign(user, process.env.SECRETKEY, { expiresIn: expirationTime });
+  return jWT.sign(data, process.env.SECRETKEY, { expiresIn: expirationTime });
 };
 
 const opts = {};
@@ -29,14 +29,10 @@ opts.jwtFromRequest = extractJWT.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRETKEY;
 
 exports.jwtPassport = passport.use(
-  new jWTStrategy(opts, (jwt_payload, done) => {
-    //console.log(`JWT payload: ${jwt_payload._id}`);
-    let userExtract = modelAuthAndUser.getUserByEmail({
-      email: jwt_payload.email,
-    });
-    if (userExtract) {
-      return done(null, userExtract);
-    }
+  new jWTStrategy(opts, (payload, done) => {
+    // const user = payload;
+    //console.log(payload);
+    return done(null, payload._id);
   })
 );
 

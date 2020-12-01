@@ -7,6 +7,9 @@ const objectId = require("mongodb").ObjectID;
 // Importamos bcrypt (linux y mac) / bcrypt (windows)
 const bcrypt = require("bcrypt");
 
+const { json } = require("express");
+const { use } = require("passport");
+
 class authAndUser {
   constructor() {
     this.collection = null;
@@ -42,7 +45,7 @@ class authAndUser {
     }
   }
 
-  async getUserByEmail(email) {
+  /*   async getUserByEmail(email) {
     try {
       const filter = { email };
       let user = await this.collection.findOne(filter);
@@ -50,14 +53,34 @@ class authAndUser {
     } catch (error) {
       throw error;
     }
-  }
+  } */
 
-  async comparePassword(rawPassword, cryptoPassword) {
-    try {
-      return bcrypt.compareSync(rawPassword, cryptoPassword);
-    } catch (error) {
-      throw error;
-    }
+  async comparePassword(email, rawPassword) {
+    const user = await this.collection
+      .findOne({ email })
+      .then((result) => {
+        //console.log("Devolvio e1: \n", result);
+        // return result;
+        if (!result) {
+          return result;
+        } else {
+          //console.log("paso al ese");
+          const data = bcrypt.compareSync(rawPassword, result.password);
+          //console.log("paso el compare");
+          if (!data) {
+            return data;
+          } else {
+            //console.log("llego al result");
+            return result;
+          }
+        }
+      })
+      .catch((error) => {
+        console.log("Hubo un error e2:\n", error);
+        return error;
+      });
+
+    return user;
   }
 }
 
