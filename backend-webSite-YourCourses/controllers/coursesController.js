@@ -123,8 +123,36 @@ exports.updateCourse = async (req, res, next) => {
           information,
           price,
         });
-        res.status(200).json({ message: "Se guardo correctamente tu curso" });
+        res
+          .status(200)
+          .json({ message: "Se actualizo correctamente tu curso" });
       }
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Algo salio mal, contacte con el administrador" });
+  }
+};
+
+exports.addLesson = async (req, res, next) => {
+  try {
+    const message = [];
+    const { id } = req.params;
+    const { name, description, video } = req.body;
+
+    const oneCourse = await modelCourses.getOneCourse(id);
+
+    if (req.user.email != oneCourse.author) {
+      message.push({ message: "No tiene permisos para realizar esta acción" });
+    }
+
+    if (message.length) {
+      res.status(403).json(message);
+    } else {
+      await modelCourses.addLesson(id, name, description, video);
+      res.status(200).json({ message: "Se actualizo correctamente tu curso" });
     }
   } catch (error) {
     console.log(error);

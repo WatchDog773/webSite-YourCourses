@@ -59,18 +59,32 @@ class courses {
     }
   }
 
-  async updateCourseById(cursoId, data) {
+  async updateCourseById(courseId, data) {
     try {
-      const _id = new objectId(cursoId);
+      const _id = new objectId(courseId);
       const docOptions = { $set: data };
-      const result = await this.collection.findOneAndUpdate(
-        { _id },
-        docOptions,
-        {
-          returnOriginal: false,
-        }
-      );
-      return result;
+      await this.collection.updateOne({ _id }, docOptions, {
+        returnOriginal: false,
+      });
+      //return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addLesson(courseId, name, description, video) {
+    try {
+      const _id = new objectId(courseId);
+      const lesson = {
+        _id: objectId(),
+        name,
+        description,
+        video,
+      };
+      const docOperations = { $push: { lessons: lesson } };
+      await this.collection.updateOne({ _id }, docOperations, {
+        returnOriginal: false,
+      });
     } catch (error) {
       throw error;
     }
