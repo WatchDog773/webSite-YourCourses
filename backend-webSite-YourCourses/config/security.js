@@ -15,7 +15,7 @@ const extractJWT = require("passport-jwt").ExtractJwt;
 const jWT = require("jsonwebtoken");
 
 // Expiracion
-const expirationTime = 60 * 3; // Es en segundos (3 minutos de expiracion)
+const expirationTime = 60 * 60; // Es en segundos (3 minutos de expiracion)
 
 exports.getToken = (data) => {
   /*   console.log(
@@ -28,11 +28,30 @@ const opts = {};
 opts.jwtFromRequest = extractJWT.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRETKEY;
 
-exports.jwtPassport = passport.use(
+// Version progrmada insegura del JWT
+/* exports.jwtPassport = passport.use(
   new jWTStrategy(opts, (payload, next) => {
     const user = { _id: payload._id, email: payload.email };
     //console.log(payload);
     return next(null, user);
+  })
+); */
+
+exports.jwtPassport = passport.use(
+  new jWTStrategy(opts, (payload, done) => {
+    modelAuthAndUser
+      .getUserByEmail(payload.email)
+      .then((result) => {
+        if (!result) {
+          return done(null, false);
+        } else {
+          const user = { _id: result._id, email: result.email };
+          return done(null, user);
+        }
+      })
+      .catch((error) => {
+        return done(error, false);
+      });
   })
 );
 

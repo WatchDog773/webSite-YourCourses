@@ -24,15 +24,16 @@ class authAndUser {
   }
 
   async addUser(data) {
-    const { email, password } = data;
+    const { email, password, stateAccount } = data;
     try {
       const add = {
-        email: email,
+        email,
         password: bcrypt.hashSync(password, 13),
         lastlogin: 0,
         lastpwdchg: 0,
         pwdexp: new Date().getTime() + 1000 * 60 * 10, // 10 minutos
         oldpwd: [],
+        stateAccount,
         //roles: ["public"], TODO: No creo ocupar roles ahorita
       };
       //const result = await this.collection.insertOne(add);
@@ -43,7 +44,7 @@ class authAndUser {
     }
   }
 
-  /*   async getUserByEmail(email) {
+  async getUserByEmail(email) {
     try {
       const filter = { email };
       const user = await this.collection.findOne(filter);
@@ -51,7 +52,7 @@ class authAndUser {
     } catch (error) {
       throw error;
     }
-  } */
+  }
 
   async comparePassword(email, password) {
     try {

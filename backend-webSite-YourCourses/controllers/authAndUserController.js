@@ -8,59 +8,83 @@ const securityConfig = require("../config/security");
 
 exports.signUp = async (req, res, next) => {
   try {
+    const message = [];
     const { email, password, passwordVerify } = req.body;
+
     if (!email) {
-      res.status(400).json({ mensaje: "Debe tener un correo electrónico" });
-    } else if (!password) {
-      res.status(400).json({ mensaje: "Debe tener una contraseña" });
-    } else if (!passwordVerify) {
-      res.status(400).json({ mensaje: "Debe confirmar la contraseña" });
-    } else if (password != passwordVerify) {
-      res.status(400).json({ mensaje: "Las contraseñas no coinciden" });
+      message.push({ message: "Debe tener un correo electrónico" });
+    }
+    if (!password) {
+      message.push({ message: "Debe tener una contraseña" });
+    }
+    if (!passwordVerify) {
+      message.push({ message: "Debe confirmar la contraseña" });
+    }
+    if (password != passwordVerify && passwordVerify != null) {
+      message.push({ message: "Las contraseñas no coinciden" });
+    }
+
+    if (message.length) {
+      res.status(400).json(message);
     } else {
-      await modelAuthAndUser.addUser({ email, password });
-      res.status(201).json({ mensaje: "Registrado con exito" });
+      await modelAuthAndUser.addUser({
+        email,
+        password,
+        stateAccount: "Active",
+      });
+      res.status(201).json({ message: "Registrado con exito" });
     }
   } catch (error) {
     if (error.toString().match(/MongoError: E11000.*/)) {
       // Busca si ese ese error sobre el correo.
       //console.log("YA EXISTE ESE CORREO");
-      res.status(500).json({ mensaje: "Ese correo ya esta registrado" });
+      res.status(500).json({ message: "Ese correo ya esta registrado" });
     } else {
       console.log(error);
       res
         .status(500)
-        .json({ mensaje: "Algo salio mal, contacte con el administrador" });
+        .json({ message: "Algo salio mal, contacte con el administrador" });
     }
   }
 };
 
 exports.logIn = async (req, res, next) => {
   try {
+    const message = [];
     const { email, password } = req.body;
 
     if (!email) {
       // Si el correo viene vacio
-      res.status(400).json({ mensaje: "Debe ingresar un correo electrónico" });
-    } else if (!password) {
+      message.push({ message: "Debe ingresar un correo electrónico" });
+    }
+    if (!password) {
       // Si la contraseña viene vacia
-      res.status(400).json({ mensaje: "Debe ingresar una contraseña" });
+      message.push({ message: "Debe ingresar una contraseña" });
+    }
+
+    if (message.length) {
+      res.status(400).json(message);
     } else {
       const _idUser = await modelAuthAndUser.comparePassword(email, password);
       if (_idUser == null) {
         // Si devuelve null
         //res.send(`Viene vacio: ${user}`);
-        res.status(404).json({ mensaje: "El usuario no existe" });
-      } else if (_idUser == false) {
+        message.push({ message: "El usuario no existe" });
+      }
+      if (_idUser == false) {
         // Si devuelve falso
         //res.send(`Viene falso: ${user}`);
-        res.status(403).json({ mensaje: "Correo y/o contraseña incorrecto/a" });
+        message.push({ message: "Correo y/o contraseña incorrecto/a" });
+      }
+
+      if (message.length) {
+        res.status(403).json(message);
       } else {
         // Si devuelve verdadero
         //res.send(`Viene verdadero: ${user}`);
         const token = await securityConfig.getToken({ _id: _idUser, email });
         res.status(200).json({
-          mensaje: "Bienvenido/a",
+          message: "Bienvenido/a",
           user: { _id: _idUser, email },
           token,
         });
