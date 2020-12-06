@@ -30,10 +30,21 @@ opts.secretOrKey = process.env.SECRETKEY;
 
 exports.jwtPassport = passport.use(
   new jWTStrategy(opts, (payload, done) => {
-    // const user = payload;
+    const user = { _id: payload._id, email: payload };
     //console.log(payload);
-    return done(null, payload._id);
+    return done(null, user);
   })
 );
+
+// Permitir que passport lea los valores del objeto usuario
+// Serializar el usuario
+passport.serializeUser((usuario, callback) => {
+  callback(null, usuario);
+});
+
+// Deserializar el usuario
+passport.deserializeUser((usuario, callback) => {
+  callback(null, usuario);
+});
 
 exports.verifyUser = passport.authenticate("jwt", { session: false });

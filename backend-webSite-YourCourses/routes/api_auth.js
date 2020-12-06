@@ -20,4 +20,6 @@ router.post("/signin", authAndUserController.signUp);
 
 router.post("/login", authAndUserController.logIn);
 
+//router.get("/test", securityConfig.verifyUser, authAndUserController.test);
+
 module.exports = router;
