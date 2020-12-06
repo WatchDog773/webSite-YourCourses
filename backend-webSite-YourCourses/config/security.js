@@ -29,10 +29,10 @@ opts.jwtFromRequest = extractJWT.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRETKEY;
 
 exports.jwtPassport = passport.use(
-  new jWTStrategy(opts, (payload, done) => {
-    const user = { _id: payload._id, email: payload };
+  new jWTStrategy(opts, (payload, next) => {
+    const user = { _id: payload._id, email: payload.email };
     //console.log(payload);
-    return done(null, user);
+    return next(null, user);
   })
 );
 

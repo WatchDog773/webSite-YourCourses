@@ -4,7 +4,7 @@ const modelAuthAndUser = new authAndUserModel();
 
 // Exportar la configuración de seguridad
 const securityConfig = require("../config/security");
-const passport = require("passport");
+//const passport = require("passport");
 
 exports.signUp = async (req, res, next) => {
   try {
