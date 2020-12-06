@@ -38,8 +38,8 @@ opts.secretOrKey = process.env.SECRETKEY;
 ); */
 
 exports.jwtPassport = passport.use(
-  new jWTStrategy(opts, (payload, done) => {
-    modelAuthAndUser
+  new jWTStrategy(opts, async (payload, done) => {
+    await modelAuthAndUser
       .getUserByEmail(payload.email)
       .then((result) => {
         if (!result) {

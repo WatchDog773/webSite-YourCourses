@@ -10,6 +10,7 @@ const securityConfig = require("../config/security");
 
 router.get("/allCourses", coursesController.chargeAllCourses);
 router.get("/one/:id", coursesController.chargeOneCourse);
+router.get("/:author", coursesController.chargeAllCoursesByAuthor);
 
 router.post("/new", securityConfig.verifyUser, coursesController.createCourse);
 

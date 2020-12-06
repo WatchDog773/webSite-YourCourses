@@ -30,9 +30,9 @@ class courses {
     }
   }
 
-  async getAllCoursesByUser(userId) {
+  async getAllCoursesByAuthor(author) {
     try {
-      const result = await this.collection.find({ userId });
+      const result = await this.collection.find({ author }).toArray();
       return result;
     } catch (error) {
       throw error;

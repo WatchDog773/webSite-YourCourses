@@ -27,6 +27,19 @@ exports.chargeOneCourse = async (req, res, next) => {
   }
 };
 
+exports.chargeAllCoursesByAuthor = async (req, res, next) => {
+  try {
+    const { author } = req.params;
+    const courses = await modelCourses.getAllCoursesByAuthor(author);
+    res.status(200).json(courses);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Algo salio mal, contacte con el administrador" });
+  }
+};
+
 exports.createCourse = async (req, res, next) => {
   try {
     const message = [];
