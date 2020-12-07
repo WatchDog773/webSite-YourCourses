@@ -7,9 +7,6 @@ const objectId = require("mongodb").ObjectID;
 // Importamos bcrypt (linux y mac) / bcrypt (windows)
 const bcrypt = require("bcrypt");
 
-const { json } = require("express");
-const { use } = require("passport");
-
 class authAndUser {
   constructor() {
     this.collection = null;
@@ -27,60 +24,57 @@ class authAndUser {
   }
 
   async addUser(data) {
-    const { email, password } = data;
+    const { email, password, stateAccount } = data;
     try {
       const add = {
-        email: email,
+        email,
         password: bcrypt.hashSync(password, 13),
         lastlogin: 0,
         lastpwdchg: 0,
         pwdexp: new Date().getTime() + 1000 * 60 * 10, // 10 minutos
         oldpwd: [],
+        stateAccount,
         //roles: ["public"], TODO: No creo ocupar roles ahorita
       };
-      const result = await this.collection.insertOne(add);
-      return result;
+      //const result = await this.collection.insertOne(add);
+      await this.collection.insertOne(add);
+      //return result;
     } catch (error) {
       throw error;
     }
   }
 
-  /*   async getUserByEmail(email) {
+  async getUserByEmail(email) {
     try {
       const filter = { email };
-      let user = await this.collection.findOne(filter);
+      const user = await this.collection.findOne(filter);
       return user;
     } catch (error) {
       throw error;
     }
-  } */
+  }
 
-  async comparePassword(email, rawPassword) {
-    const user = await this.collection
-      .findOne({ email })
-      .then((result) => {
-        //console.log("Devolvio e1: \n", result);
-        // return result;
-        if (!result) {
-          return result;
+  async comparePassword(email, password) {
+    try {
+      // Devuelve un null si no existe el usuario
+      // Devuelve un true si la contraseña coincide
+      // Devuelve un false si la contraseña no coincide
+      const user = await this.collection.findOne({ email });
+      //return await bcrypt.compare(rawPswd, crptoPswd);
+      if (!user) {
+        // Si el usuario viene vacio
+        return null;
+      } else {
+        if (!(await bcrypt.compare(password, user.password))) {
+          // Si la contraseña es incorrecta
+          return false;
         } else {
-          //console.log("paso al ese");
-          const data = bcrypt.compareSync(rawPassword, result.password);
-          //console.log("paso el compare");
-          if (!data) {
-            return data;
-          } else {
-            //console.log("llego al result");
-            return result;
-          }
+          return user._id;
         }
-      })
-      .catch((error) => {
-        console.log("Hubo un error e2:\n", error);
-        return error;
-      });
-
-    return user;
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

@@ -15,7 +15,7 @@ const extractJWT = require("passport-jwt").ExtractJwt;
 const jWT = require("jsonwebtoken");
 
 // Expiracion
-const expirationTime = 60 * 3; // Es en segundos (3 minutos de expiracion)
+const expirationTime = 60 * 60 * 24; // Es en segundos (3 minutos de expiracion)
 
 exports.getToken = (data) => {
   /*   console.log(
@@ -28,12 +28,42 @@ const opts = {};
 opts.jwtFromRequest = extractJWT.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRETKEY;
 
-exports.jwtPassport = passport.use(
-  new jWTStrategy(opts, (payload, done) => {
-    // const user = payload;
+// Version progrmada insegura del JWT
+/* exports.jwtPassport = passport.use(
+  new jWTStrategy(opts, (payload, next) => {
+    const user = { _id: payload._id, email: payload.email };
     //console.log(payload);
-    return done(null, payload._id);
+    return next(null, user);
+  })
+); */
+
+exports.jwtPassport = passport.use(
+  new jWTStrategy(opts, async (payload, done) => {
+    await modelAuthAndUser
+      .getUserByEmail(payload.email)
+      .then((result) => {
+        if (!result) {
+          return done(null, false);
+        } else {
+          const user = { _id: result._id, email: result.email };
+          return done(null, user);
+        }
+      })
+      .catch((error) => {
+        return done(error, false);
+      });
   })
 );
+
+// Permitir que passport lea los valores del objeto usuario
+// Serializar el usuario
+passport.serializeUser((usuario, callback) => {
+  callback(null, usuario);
+});
+
+// Deserializar el usuario
+passport.deserializeUser((usuario, callback) => {
+  callback(null, usuario);
+});
 
 exports.verifyUser = passport.authenticate("jwt", { session: false });
