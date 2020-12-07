@@ -11,6 +11,11 @@ const securityConfig = require("../config/security");
 router.get("/allCourses", coursesController.chargeAllCourses); // Trae todos los cursos
 router.get("/one/:id", coursesController.chargeOneCourse); // Trae un curso por id
 router.get("/:author", coursesController.chargeAllCoursesByAuthor); // Trae todos los cursos por usuario o autor
+router.get(
+  "/:id/lesson/:lessonId",
+  securityConfig.verifyUser,
+  coursesController.updateLesson
+);
 
 router.post("/new", securityConfig.verifyUser, coursesController.createCourse); // Crea un nuevo curso
 
@@ -23,6 +28,11 @@ router.put(
   "/addLesson/:id",
   securityConfig.verifyUser,
   coursesController.addLesson
+);
+router.put(
+  "/:id/lesson/:lessonId",
+  securityConfig.verifyUser,
+  coursesController.updateLesson
 );
 
 module.exports = router;

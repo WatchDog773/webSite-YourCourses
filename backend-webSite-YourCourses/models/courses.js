@@ -76,7 +76,7 @@ class courses {
     try {
       const _id = new objectId(courseId);
       const lesson = {
-        _id: objectId(),
+        id: objectId(),
         name,
         description,
         video,
@@ -85,6 +85,57 @@ class courses {
       await this.collection.updateOne({ _id }, docOperations, {
         returnOriginal: false,
       });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAllLessonsByCourse(cursoId) {
+    try {
+      const _id = objectId(cursoId);
+      const result = await this.collection.findOne({ _id });
+      return result.lessons;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getOneLessonByCourse(cursoId, lessonId) {
+    try {
+      const _id = objectId(cursoId);
+      const result = await this.collection
+        .findOne({ _id })
+        .then((doc) => {
+          for (const i in doc.lessons) {
+            //console.log(doc.lessons[i]);
+            if (doc.lessons[i].id == lessonId) {
+              //console.log(doc.lessons[i]);
+              return doc.lessons[i];
+            }
+          }
+        })
+        .catch((error) => {
+          throw error;
+        });
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateOneLessonByCourse(cursoId, lessonId, name, description, video) {
+    try {
+      const _id = objectId(cursoId);
+      const id = objectId(lessonId);
+      const docOperations = {
+        $set: {
+          "lessons.$.name": name,
+          "lessons.$.description": description,
+          "lessons.$.video": video,
+        },
+      };
+      await this.collection.updateOne({ _id, "lessons.id": id }, docOperations);
     } catch (error) {
       throw error;
     }
