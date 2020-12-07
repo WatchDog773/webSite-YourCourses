@@ -30,9 +30,14 @@ router.put(
   coursesController.addLesson
 );
 router.put(
-  "/:id/lesson/:lessonId",
+  "/:id/lessonUpdate/:lessonId",
   securityConfig.verifyUser,
   coursesController.updateLesson
+);
+router.put(
+  "/:id/lessonDelete/:lessonId",
+  securityConfig.verifyUser,
+  coursesController.removeLesson
 );
 
 module.exports = router;

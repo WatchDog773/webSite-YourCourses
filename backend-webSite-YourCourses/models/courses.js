@@ -128,6 +128,8 @@ class courses {
     try {
       const _id = objectId(cursoId);
       const id = objectId(lessonId);
+
+      // https://docs.mongodb.com/manual/reference/operator/update/positional/
       const docOperations = {
         $set: {
           "lessons.$.name": name,
@@ -135,7 +137,39 @@ class courses {
           "lessons.$.video": video,
         },
       };
-      await this.collection.updateOne({ _id, "lessons.id": id }, docOperations);
+      const result = await this.collection.updateOne(
+        { _id, "lessons.id": id },
+        docOperations,
+        {
+          returnOriginal: false,
+        }
+      );
+      //console.log(result.result.nModified);
+      if (!result.result.nModified) {
+        return { message: "No se realizo ningún cambio" };
+      } else {
+        return { message: "Se actualizo con éxito la lección" };
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteOneLessonByCourse(cursoId, lessonId) {
+    try {
+      const _id = objectId(cursoId);
+      const id = objectId(lessonId);
+
+      // https://docs.mongodb.com/manual/reference/operator/update/pull/
+      const docOperations = { $pull: { lessons: { id } } };
+      const result = await this.collection.updateOne({ _id }, docOperations, {
+        returnOriginal: false,
+      });
+      if (!result.result.nModified) {
+        return { message: "No se realizo ninguna eliminacion" };
+      } else {
+        return { message: "Se elimino con éxito la lección" };
+      }
     } catch (error) {
       throw error;
     }
