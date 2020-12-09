@@ -192,53 +192,14 @@ exports.updateLesson = async (req, res, next) => {
     if (message.length) {
       res.status(403).json(message);
     } else {
-      if (!name) {
-        message.push({ message: "La lección debe tener un nombre" });
-      }
-      if (!description) {
-        message.push({ message: "La lección debe tener una descripción" });
-      }
-      /*       if (!video) {
-        message.push({ message: "La lección debe tener un video" });
-      } */
-
-      if (message.length) {
-        res.status(400).json(message);
-      } else {
-        const result = await modelCourses.updateOneLessonByCourse(
-          id,
-          lessonId,
-          name,
-          description,
-          video
-        );
-        // res.status(200).json({ message: "Se actualizo con éxito la lección" });
-        res.status(200).json(result);
-      }
-    }
-  } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .json({ message: "Algo salio mal, contacte con el administrador" });
-  }
-};
-
-exports.removeLesson = async (req, res, next) => {
-  try {
-    const message = [];
-    const { id, lessonId } = req.params;
-    const oneCourse = await modelCourses.getOneCourse(id);
-
-    if (req.user.email != oneCourse.author) {
-      message.push({ message: "No tiene permisos para realizar esta acción" });
-    }
-
-    if (message.length) {
-      res.status(403).json(message);
-    } else {
-      const result = await modelCourses.deleteOneLessonByCourse(id, lessonId);
-      res.status(200).json(result);
+      await modelCourses.updateOneLessonByCourse(
+        id,
+        lessonId,
+        name,
+        description,
+        video
+      );
+      res.status(200).json({ message: "Se actualizo con éxito la lección" });
     }
   } catch (error) {
     console.log(error);
