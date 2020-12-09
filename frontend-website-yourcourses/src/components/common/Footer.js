@@ -13,7 +13,16 @@ const FooterPage = () => {
               
             </p>
           </MDBCol>
-        
+
+        <MDBCol>
+        <Container>
+            <Row>
+                <Col xs={6} md={4}>
+                <Image src="" roundedCircle />
+                </Col>
+            </Row>
+            </Container>
+        </MDBCol>
         </MDBRow>
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
