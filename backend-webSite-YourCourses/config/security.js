@@ -45,6 +45,7 @@ exports.jwtPassport = passport.use(
         if (!result) {
           return done(null, false);
         } else {
+          // TODO: Verificar si el usuario tiene un estado activo
           const user = { _id: result._id, email: result.email };
           return done(null, user);
         }
