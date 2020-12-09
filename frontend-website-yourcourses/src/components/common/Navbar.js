@@ -21,13 +21,7 @@ const NavBar = () => {
           </Nav>
           <Nav className="ml-auto">
             <Nav.Item>
-              <Button
-                onClick={(e) => {
-                  setRedirect("/login");
-                }}
-              >
-                Acceder
-              </Button>
+              <Button variant='info' onClick={(e) => {setRedirect("/login"); }}>Acceder</Button>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>
