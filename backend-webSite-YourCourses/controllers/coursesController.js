@@ -53,7 +53,7 @@ exports.createCourse = async (req, res, next) => {
     if (!information) {
       message.push({ message: "El curso debe tener una información" });
     }
-    /* if (!image) {
+    /* if (!image) { TODO: Habilitar despues
       message.push({ message: "El curso debe tener una imagen de portada" });
     } */
     if (!price) {
@@ -107,7 +107,7 @@ exports.updateCourse = async (req, res, next) => {
       if (!information) {
         message.push({ message: "El curso debe tener una información" });
       }
-      /* if (!image) {
+      /* if (!image) { TODO: Habilitar después
         message.push({ message: "El curso debe tener una imagen de portada" });
       } */
       if (!price) {
