@@ -1,32 +1,68 @@
-import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBInput } from 'mdbreact';
+import { useState } from "react";
+import { Redirect, Link, useHistory, useLocation } from "react-router-dom";
+import "./nohe.css"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Container, Form, Button, Card } from "react-bootstrap";
 
-const FormPage = () => {
-return (
-    <MDBContainer>
-    <MDBRow>
-        <MDBCol md="6">
-        <form>
-            <p className="h5 text-center mb-4">Write to us</p>
-            <div className="grey-text">
-            <MDBInput label="Nombre" icon="user" group type="text" validate error="wrong"
-            s success="right" />
-            <MDBInput label="Email" icon="envelope" group type="email" validate error="wrong"
-                success="right" />
-            <MDBInput label="Contraseña" icon="tag" group type="text" validate error="wrong" success="right" />
-            <MDBInput label="Confirmar contraseña" icon="exclamation-triangle" group type="text" validate
-                error="wrong" success="right" />
-            </div>
-            <div className="text-center">
-            <MDBBtn outline color="secondary">
-                Send
-                <MDBIcon far icon="paper-plane" className="ml-1" />
-            </MDBBtn>
-            </div>
-        </form>
-        </MDBCol>
-    </MDBRow>
-    </MDBContainer>
-    );
+const Registrate = () => {
+  let [redirect, setRedirect] = useState("");
+  if (redirect !== "") {
+    return <Redirect to={redirect}></Redirect>;
+  }
+  return (
+    <div className="wrapper">
+        <div className="form-wrapper">
+            <h1>Crea tu cuenta</h1>
+            <form onSubmit={this.handlesubmit} noValidate>
+                <div className="nombre">
+                    <label htmlFor="nombre">Nombre</label>
+                    <input type="text" 
+                    className="" 
+                    placeholder="Nombre" 
+                    type="text" 
+                    name="nombre"
+                    noValidate
+                    onChange={this.handlesubmit}
+                    />
+                </div>
+                <div className="CorreoElectrónico">
+                    <label htmlFor="CorreoElectrónico">Correo Electrónico</label>
+                    <input type="text" 
+                    className="" 
+                    placeholder="CorreoElectrónico" 
+                    type="text" 
+                    name="CorreoElectrónico"
+                    noValidate
+                    onChange={this.handlesubmit}
+                    />
+                </div>
+                <div className="Contraseña">
+                    <label htmlFor="Contraseña">Contraseña</label>
+                    <input type="text" 
+                    className="" 
+                    placeholder="Contraseña" 
+                    type="text" 
+                    name="Contraseña"
+                    noValidate
+                    onChange={this.handlesubmit}
+                    />
+                </div>
+                <div className="ConfirmarContraseña">
+                    <label htmlFor="ConfirmarContraseña">Confirmar Contraseña</label>
+                    <input type="text" 
+                    className="" 
+                    placeholder="ConfirmarContraseña" 
+                    type="text" 
+                    name="ConfirmarContraseña"
+                    noValidate
+                    onChange={this.handlesubmit}
+                    />
+                </div>
+            </form>
+        </div> 
+    </div>
+  );
 };
-export default FormPage;
+
+export default Registrate;
