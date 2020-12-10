@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./components/public/Home";
 import LogIn from "./components/public/LogIn";
 import StartIt from "./components/public/Start";
+import NotFound from "./components/public/NotFound";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 //import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,6 +17,8 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={LogIn} />
           <Route path="/productos" exact component={StartIt} />
+
+          <Route path="*" component={NotFound} />
         </Switch>
       </Router>
     </div>
