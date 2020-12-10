@@ -9,7 +9,7 @@ function ControlledCarousel() {
     };
   
     return (
-      <div className='mt-3'>
+      <div>
           <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
           <img
