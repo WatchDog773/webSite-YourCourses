@@ -3,6 +3,7 @@ import "./App.css";
 // Importar el nav
 import Home from "./components/public/Home";
 import LogIn from "./components/public/LogIn";
+import SingUp from "./components/public/SignUp"
 import StartIt from "./components/public/Start";
 import NotFound from "./components/public/NotFound";
 
@@ -17,7 +18,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={LogIn} />
           <Route path="/productos" exact component={StartIt} />
-
+          <Route path="/singup" exact component={SingUp}/>
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
