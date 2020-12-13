@@ -3,10 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 // Exportar el controlador
-const coursesController = require("../controllers/coursesController");
+const coursesController = require("../../controllers/coursesController");
 
 // Exportar la configuración de seguridad
-const securityConfig = require("../config/security");
+const securityConfig = require("../../config/security");
 
 router.get("/allCourses", coursesController.chargeAllCourses); // Trae todos los cursos
 router.get("/one/:id", coursesController.chargeOneCourse); // Trae un curso por id

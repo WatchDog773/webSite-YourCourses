@@ -9,8 +9,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 // Importar el archivo de la ruta a usar
-const apiAuth = require("./routes/api_auth");
-const apiCourses = require("./routes/api_courses");
+// const apiAuth = require("./routes/api_auth");
+// const apiCourses = require("./routes/api_courses");
+const api = require("./routes/api");
 
 var app = express();
 
@@ -29,8 +30,9 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 // Decirle a la aplicacion de servidor que ruta usar
-app.use("/auth", apiAuth);
-app.use("/courses", apiCourses);
+// app.use("/auth", apiAuth);
+// app.use("/courses", apiCourses);
+app.use("/api", api);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
