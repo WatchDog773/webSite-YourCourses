@@ -10,6 +10,7 @@ import SingUp from "./components/public/SignUp";
 import StartIt from "./components/private/Start";
 import NotFound from "./components/public/NotFound";
 import Splash from "./components/public/Splash";
+import Courses from "./components/private/Courses";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRouter from "./utilities/PrivateRouter";
@@ -27,6 +28,7 @@ function App() {
 
             <Splash>
               <PrivateRouter path="/startit" exact component={StartIt} />
+              <PrivateRouter path="/courses" exact component={Courses} />
             </Splash>
 
             <Route path="/signup" exact component={SingUp} />
