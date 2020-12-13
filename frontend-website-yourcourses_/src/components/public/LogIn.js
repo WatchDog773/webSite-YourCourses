@@ -3,6 +3,9 @@ import { useHistory, useLocation } from "react-router-dom";
 /*import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; */
 import { Button } from "react-bootstrap";
+import {naxios as axios, setJWT} from '../../utilities/Axios'; 
+
+
 
 import imgLogin from "./login.svg";
 import "./Login&signUp.css";
@@ -14,7 +17,7 @@ import {
   LOGIN_SUCCESS,
 } from "../../utilities/store/reducers/auth.reducer";
 
-import axios from "axios";
+//import axios from "axios";
 
 const LogIn = () => {
   /*let [redirect, setRedirect] = useState("");
@@ -51,6 +54,7 @@ const LogIn = () => {
       .then(({ data }) => {
         //console.log(data);
         dispath({ type: LOGIN_SUCCESS, payload: data });
+        setJWT(data.jwt);
         routeHistory.replace(from);
       })
       .catch((error) => {
