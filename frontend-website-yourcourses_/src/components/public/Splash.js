@@ -21,7 +21,7 @@ const Splash = ({ children }) => {
     if (!app.initialized) {
       setTimeout(() => {
         dispatch({ type: APP_MIN });
-      }, 1);
+      }, 0);
       appInit(auth, dispatch, { routeHistory, routeLocation });
     }
   }, []);
