@@ -86,7 +86,7 @@ exports.logIn = async (req, res, next) => {
         res.status(200).json({
           message: "Bienvenido/a",
           user: { _id: _idUser, email },
-          token,
+          jwt: token,
         });
       }
     }
