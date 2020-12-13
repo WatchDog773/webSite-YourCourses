@@ -23,8 +23,8 @@ const Footer = () => {
                         <ul class = "box" className="text-dark">
                             
                             <li><a href="#home">Cursos</a></li>
-                            <li><a href="#home">Login</a></li>
-                            <li><a href="#home">Sign Up</a></li>
+                            <li><a href="#home">Acceder</a></li>
+                            <li><a href="#home">Registrarse</a></li>
                             <li><a href="#home">Acerca de</a></li>
                         </ul>
     </Card.Text>
