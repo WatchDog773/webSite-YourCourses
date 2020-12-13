@@ -22,18 +22,18 @@ function App() {
     <StateProvider initialState={appState} reducer={mainReducer}>
       <div>
         <Router>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={LogIn} />
+          <Splash>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/login" exact component={LogIn} />
+              <Route path="/signup" exact component={SingUp} />
 
-            <Splash>
               <PrivateRouter path="/startit" exact component={StartIt} />
               <PrivateRouter path="/courses" exact component={Courses} />
-            </Splash>
 
-            <Route path="/signup" exact component={SingUp} />
-            <Route path="*" component={NotFound} />
-          </Switch>
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </Splash>
         </Router>
       </div>
     </StateProvider>

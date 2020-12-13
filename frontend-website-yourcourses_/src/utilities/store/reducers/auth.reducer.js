@@ -7,6 +7,7 @@ const emptyAuth = {
   error: "",
   signin: false,
   redirect: false,
+  searchFilter: "",
 };
 
 // 1.2 El estado inicial
@@ -59,6 +60,18 @@ const authReducer = (state = initialState, action = {}) => {
         redirect: action.payload.to,
       };
     }
+
+    case SIGNIN_FETCHING: {
+      return { ...state, isFetching: true };
+    }
+
+    case SIGNIN_SUCCES:
+      if (action.payload) {
+        return { ...initialState, searchFilter: action.payload.searchFilter };
+      } else {
+        let { searchFilter } = state;
+        return { ...initialState, searchFilter: searchFilter };
+      }
 
     default: {
       return state;

@@ -1,4 +1,5 @@
 import { useStateContext } from "../../utilities/Context";
+import Courses from "./Courses";
 
 const Start = () => {
   const [{ auth }] = useStateContext();
@@ -8,6 +9,10 @@ const Start = () => {
       <h3>
         {auth.message} {auth.user.email}
       </h3>
+
+      <div>
+        <Courses />
+      </div>
     </div>
   );
 };
