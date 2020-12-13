@@ -43,11 +43,11 @@ const LogIn = () => {
   let { from } = location.state || { from: { pathname: "/startit" } };
   const onLogin = (e) => {
     const { email, password } = form;
-    console.log(email);
-    console.log(password);
+    //console.log(email);
+    //console.log(password);
     dispath({ type: LOGIN_FETCHING });
     axios
-      .post("/auth/login", { email, password })
+      .post("/api/auth/login", { email, password })
       .then(({ data }) => {
         //console.log(data);
         dispath({ type: LOGIN_SUCCESS, payload: data });
