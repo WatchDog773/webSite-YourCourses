@@ -10,10 +10,10 @@ const authAndUserModel = require("../models/authAndUser");
 const modelAuthAndUser = new authAndUserModel(); */
 
 // Exportar la configuración de seguridad
-const securityConfig = require("../config/security");
+const securityConfig = require("../../config/security");
 
 // Exportar el controlador
-const authAndUserController = require("../controllers/authAndUserController");
+const authAndUserController = require("../../controllers/authAndUserController");
 
 // Sign in
 router.post("/signin", authAndUserController.signUp);

@@ -15,7 +15,8 @@ const extractJWT = require("passport-jwt").ExtractJwt;
 const jWT = require("jsonwebtoken");
 
 // Expiracion
-const expirationTime = 60 * 60 * 24; // Es en segundos (3 minutos de expiracion)
+//const expirationTime = 60 * 60 * 24; // Es en segundos (un dia de expiracion)
+const expirationTime = 60 * 3; // Es en segundos (3 minutos de expiracion)
 
 exports.getToken = (data) => {
   /*   console.log(
