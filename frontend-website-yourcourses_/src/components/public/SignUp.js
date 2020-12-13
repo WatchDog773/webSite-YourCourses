@@ -1,7 +1,53 @@
+import { useState } from "react";
+import { useStateContext } from "../../utilities/Context";
+// import { paxios } from "../../utilities/Axios";
+import { useHistory } from "react-router-dom";
 import imgRegister from "./register.svg";
 import "./Login&signUp.css";
 
+import axios from "axios";
+
+import {
+  SIGNIN_FETCHING,
+  SIGNIN_FETCHING_FAILED,
+  SIGNIN_SUCCES,
+  SIGNIN_END,
+} from "../../utilities/store/reducers/auth.reducer";
+import { Button } from "react-bootstrap";
+
 const SingUp = () => {
+  const [, dispatch] = useStateContext();
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    passwordVerify: "",
+  });
+  const history = useHistory();
+  const onChange = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { name, value } = e.target;
+    let newForm = { ...form, [name]: value };
+    setForm(newForm);
+  };
+  const addNewUser = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch({ type: SIGNIN_FETCHING });
+    axios
+      .post("api/auth/signin", form)
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: SIGNIN_SUCCES });
+        history.push("/login");
+      })
+      .catch((ex) => {
+        console.log(ex);
+        dispatch({ type: SIGNIN_FETCHING_FAILED });
+        alert("Algo salio mál al registrar");
+      });
+  };
+
   return (
     <div className="container1">
       <div className="forms-container1">
@@ -9,18 +55,38 @@ const SingUp = () => {
           <form action="#" className="sign-in-form">
             <h2 className="title">Crear cuenta</h2>
             <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input type="text" placeholder="Nombre usuario" />
-            </div>
-            <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Correo" />
+              <input
+                name="email"
+                onChange={onChange}
+                value={form.email}
+                type="email"
+                placeholder="Correo electrónico"
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Contraseña" />
+              <input
+                name="password"
+                value={form.password}
+                onChange={onChange}
+                type="password"
+                placeholder="Contraseña"
+              />
             </div>
-            <input type="submit" className="btn" value="Crear cuenta" />
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input
+                name="passwordVerify"
+                value={form.passwordVerify}
+                onChange={onChange}
+                type="password"
+                placeholder="Verifica tu contraseña"
+              />
+            </div>
+            <Button onClick={addNewUser} className="btn solid">
+              Crear cuenta
+            </Button>
             <p className="social-text">
               Encuentranos en nuestras redes sociales
             </p>
