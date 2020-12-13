@@ -1,28 +1,35 @@
 //import logo from './logo.svg';
 import "./App.css";
+import { StateProvider } from "./utilities/Context";
+import mainReducer from "./utilities/store/Store";
+
 // Importar el nav
 import Home from "./components/public/Home";
 import LogIn from "./components/public/LogIn";
-import SingUp from "./components/public/SignUp"
-import StartIt from "./components/public/Start";
+import SingUp from "./components/public/SignUp";
+import StartIt from "./components/private/Start";
 import NotFound from "./components/public/NotFound";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import PrivateRouter from "./utilities/PrivateRouter";
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
+  let appState = mainReducer();
   return (
-    <div>
-      <Router>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={LogIn} />
-          <Route path="/productos" exact component={StartIt} />
-          <Route path="/singup" exact component={SingUp}/>
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </Router>
-    </div>
+    <StateProvider initialState={appState} reducer={mainReducer}>
+      <div>
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={LogIn} />
+            <PrivateRouter path="/startit" exact component={StartIt} />
+            <Route path="/signup" exact component={SingUp} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </Router>
+      </div>
+    </StateProvider>
   );
 }
 

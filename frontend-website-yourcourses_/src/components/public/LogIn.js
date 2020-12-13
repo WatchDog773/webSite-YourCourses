@@ -1,17 +1,64 @@
-/*import { useState } from "react";
-import { Redirect, Link, useHistory, useLocation } from "react-router-dom";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Form, Button, Card } from "react-bootstrap";
-*/
-import imgLogin from './login.svg';
-import './Login&signUp.css';
+import { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+/*import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; */
+import { Button } from "react-bootstrap";
+
+import imgLogin from "./login.svg";
+import "./Login&signUp.css";
+import { useStateContext } from "../../utilities/Context";
+
+import {
+  LOGIN_FETCHING,
+  LOGIN_FETCHING_FAILED,
+  LOGIN_SUCCESS,
+} from "../../utilities/store/reducers/auth.reducer";
+
+import axios from "axios";
 
 const LogIn = () => {
   /*let [redirect, setRedirect] = useState("");
   if (redirect !== "") {
     return <Redirect to={redirect}></Redirect>;
   }*/
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [, dispath] = useStateContext();
+  const routeHistory = useHistory();
+  const location = useLocation();
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form, //spread Operator
+      [name]: value,
+    });
+  };
+
+  // La accion del boton
+  let { from } = location.state || { from: { pathname: "/startit" } };
+  const onLogin = (e) => {
+    const { email, password } = form;
+    console.log(email);
+    console.log(password);
+    dispath({ type: LOGIN_FETCHING });
+    axios
+      .post("/auth/login", { email, password })
+      .then(({ data }) => {
+        //console.log(data);
+        dispath({ type: LOGIN_SUCCESS, payload: data });
+        routeHistory.replace(from);
+      })
+      .catch((error) => {
+        dispath({ type: LOGIN_FETCHING_FAILED });
+        console.log(error);
+      });
+  };
+
   return (
     /*
     <Container className="my-5">
@@ -50,55 +97,72 @@ const LogIn = () => {
       </Card>
     </Container>
     */
-   /**LOGIN */
+    /**LOGIN */
+
     <div className="container1">
-    <div className="forms-container1">
-      <div className="signin-signup">
-          <form action="#" className="sign-in-form">
-          <h2 className="title">Iniciar sesión</h2>
-          <div className="input-field">
+      <div className="forms-container1">
+        <div className="signin-signup">
+          <form className="sign-in-form">
+            <h2 className="title">Iniciar sesión</h2>
+            <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Nombre usuario" />
-          </div>
-          <div className="input-field">
+              <input
+                name="email" // 1. Primero el name Tiene que ir asi para que lea la escritura
+                onChange={onChange} // 2. Luego el onChange
+                value={form.email} // 3. Luego el valor para que este capture
+                type="email"
+                placeholder="Nombre usuario"
+              />
+            </div>
+            <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Contraseña" />
-          </div>
-          <input type="submit" value="Iniciar sesión" className="btn solid" />
-          <p className="social-text">Encuentranos en nuestras redes sociales</p>
-          <div className="social-media">
-              <a href="#" class="social-icon">
-              <i className="fab fa-facebook-f"></i>
+              <input
+                name="password"
+                value={form.password}
+                onChange={onChange}
+                type="password"
+                placeholder="Contraseña"
+              />
+            </div>
+            <Button onClick={onLogin} className="btn solid">
+              Iniciar Sesión
+            </Button>
+            <p className="social-text">
+              Encuentranos en nuestras redes sociales
+            </p>
+            <div className="social-media">
+              <a class="social-icon">
+                <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="social-icon">
-              <i className="fab fa-twitter"></i>
+              <a className="social-icon">
+                <i className="fab fa-twitter"></i>
               </a>
-              <a href="#" className="social-icon">
-              <i className="fab fa-google"></i>
+              <a className="social-icon">
+                <i className="fab fa-google"></i>
               </a>
-              <a href="#" className="social-icon">
-              <i className="fab fa-youtube"></i>
+              <a className="social-icon">
+                <i className="fab fa-youtube"></i>
               </a>
-          </div>
+            </div>
           </form>
+        </div>
       </div>
-    </div>
-    <div className="panels-container1">
-      <div className="panel left-panel">
+      <div className="panels-container1">
+        <div className="panel left-panel">
           <div className="content">
-          <h3>¿ Nuevo aquí ?</h3>
-          <p>
+            <h3>¿ Nuevo aquí ?</h3>
+            <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
-          </p>
-          <button className="btn" id="sign-up-btn">
+            </p>
+            <button className="btn" id="sign-up-btn">
               Crear cuenta
-          </button>
+            </button>
           </div>
           <img src={imgLogin} className="image" alt="imagen del login" />
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
