@@ -41,7 +41,7 @@ const Footer = () => {
                             <li><a href="#home">Blog</a></li>
                             <li><a href="#home">Precios</a></li>
                             <li><a href="#home">Cursos</a></li>
-                            <li><a href="#home">Certificaciones</a></li>
+                            <li><a href="#home">Certificaciónes</a></li>
                             <li><a href="#home">Servicio al cliente</a></li>
                         </ul>
     </Card.Text>
@@ -54,9 +54,9 @@ const Footer = () => {
     <Card.Title className="text-white">Legal</Card.Title>
     <Card.Text>
     <ul class="box" className="text-dark">
-                        <li><a href="#home">Politicas de Privacidad</a></li>
-                        <li><a href="#home">Terminos de uso</a></li>
-                        <li><a href="#home">Contactanos</a></li>
+                        <li><a href="#home">Políticas de Privacidad</a></li>
+                        <li><a href="#home">Términos de uso</a></li>
+                        <li><a href="#home">Contáctanos</a></li>
                         </ul>
     </Card.Text>
     </Card.Body>
