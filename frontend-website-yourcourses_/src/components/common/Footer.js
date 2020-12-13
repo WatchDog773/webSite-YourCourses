@@ -10,17 +10,17 @@ const Footer = () => {
 <div>
     <p></p>
     
-<Card collapseOnSelect bg="light" expand="lg" variant="dark" className="text-center">
-    <Card.Title >Your Courses</Card.Title>
+<Card collapseOnSelect bg="dark" expand="lg" variant="dark" className="text-center">
+    <Card.Title className="text-white" >Your Courses</Card.Title>
 </Card>
 <CardGroup>
-<Card collapseOnSelect bg="light" expand="lg" variant="dark" className="text-center">
+<Card collapseOnSelect bg="dark" expand="lg" variant="dark" className="text-center">
     
     <Card.Body>
-    <Card.Title>Explorar</Card.Title>
+    <Card.Title className="text-white">Explorar</Card.Title>
     <Card.Text >
     
-                        <ul class = "box">
+                        <ul class = "box" className="text-dark">
                             
                             <li><a href="#home">Cursos</a></li>
                             <li><a href="#home">Login</a></li>
@@ -32,12 +32,12 @@ const Footer = () => {
     
 </Card>
 
-<Card collapseOnSelect bg="light" expand="lg" variant="dark" className="text-center">
+<Card collapseOnSelect bg="dark" expand="lg" variant="dark" className="text-center">
     
     <Card.Body>
-    <Card.Title>¿Necesitas Ayuda?</Card.Title>
+    <Card.Title className="text-white">¿Necesitas Ayuda?</Card.Title>
     <Card.Text>
-    <ul class="box h-box"> 
+    <ul class="box h-box" className="text-dark"> 
                             <li><a href="#home">Blog</a></li>
                             <li><a href="#home">Precios</a></li>
                             <li><a href="#home">Cursos</a></li>
@@ -48,12 +48,12 @@ const Footer = () => {
     </Card.Body>
     </Card>
 
-<Card collapseOnSelect bg="light" expand="lg" variant="dark" className="text-center">
+<Card collapseOnSelect bg="dark" expand="lg" variant="dark" className="text-center">
     
     <Card.Body>
-    <Card.Title>Legal</Card.Title>
+    <Card.Title className="text-white">Legal</Card.Title>
     <Card.Text>
-    <ul class="box">
+    <ul class="box" className="text-dark">
                         <li><a href="#home">Politicas de Privacidad</a></li>
                         <li><a href="#home">Terminos de uso</a></li>
                         <li><a href="#home">Contactanos</a></li>
@@ -64,8 +64,8 @@ const Footer = () => {
 </Card>
 </CardGroup>
 
-<Card collapseOnSelect bg="light" expand="lg" variant="dark" className="text-center">
-<Card.Footer className="text-muted">©2020 Your Courses Todos los derechos reservados</Card.Footer>
+<Card collapseOnSelect bg="dark" expand="lg" variant="dark" className="text-center">
+<Card.Footer className="text-muted" className="text-white">©2020 Your Courses Todos los derechos reservados</Card.Footer>
 </Card>
 </div>
 
