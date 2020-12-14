@@ -1,6 +1,8 @@
 // Hacemos referencia a la clase
 const coursesModel = require("../models/courses");
+const lessonsModel = require("../models/lessons");
 const modelCourses = new coursesModel();
+const modelLessons = new lessonsModel();
 
 exports.chargeAllCourses = async (req, res, next) => {
   try {
@@ -140,36 +142,47 @@ exports.addLesson = async (req, res, next) => {
   try {
     const message = [];
     const { id } = req.params;
+    //console.log(id);
     const { name, description, video } = req.body;
 
-    const oneCourse = await modelCourses.getOneCourse(id);
+    /*     const oneCourse = await modelCourses.getOneCourse(id);
 
     if (req.user.email != oneCourse.author) {
       message.push({ message: "No tiene permisos para realizar esta acción" });
-    }
+    } */
 
-    if (message.length) {
-      res.status(403).json(message);
-    } else {
-      if (!name) {
-        message.push({ message: "La lección debe tener un nombre" });
-      }
-      if (!description) {
-        message.push({ message: "La lección debe tener una descripción" });
-      }
-      /*       if (!video) {
+    if (!name) {
+      message.push({ message: "La lección debe tener un nombre" });
+    }
+    if (!description) {
+      message.push({ message: "La lección debe tener una descripción" });
+    }
+    /*       if (!video) {
         message.push({ message: "La lección debe tener un video" });
       } */
 
-      if (message.length) {
-        res.status(400).json(message);
-      } else {
-        await modelCourses.addLesson(id, name, description, video);
-        res
-          .status(200)
-          .json({ message: "Se agrego una lección correctamente a tu curso" });
-      }
+    if (message.length) {
+      res.status(400).json(message);
+    } else {
+      await modelLessons.addLesson({ id, name, description, video });
+      res
+        .status(200)
+        .json({ message: "Se agrego una lección correctamente a tu curso" });
     }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Algo salio mal, contacte con el administrador" });
+  }
+};
+
+exports.getLessons = async (req, res, next) => {
+  try {
+    const { idCourse } = req.params;
+    const lessons = await modelLessons.getAllCoursesCourse(idCourse);
+    console.log(lessons);
+    res.status(200).json(lessons);
   } catch (error) {
     console.log(error);
     res
@@ -201,6 +214,35 @@ exports.updateLesson = async (req, res, next) => {
       );
       res.status(200).json({ message: "Se actualizo con éxito la lección" });
     }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Algo salio mal, contacte con el administrador" });
+  }
+};
+
+exports.subscribe = async (req, res, next) => {
+  try {
+    const { userId, courseId } = req.params;
+    console.log(userId, " ", courseId);
+    const result = await modelCourses.subscribe(userId, courseId);
+    console.log(result);
+    res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Algo salio mal, contacte con el administrador" });
+  }
+};
+
+exports.mysubscrib = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const result = await modelCourses.findSubscribe(userId);
+    console.log(result);
+    res.status(200).json(result);
   } catch (error) {
     console.log(error);
     res
