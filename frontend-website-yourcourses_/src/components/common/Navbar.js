@@ -32,7 +32,7 @@ const NavBar = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/startit">Cursos</Nav.Link>
-          <Nav.Link href="#courses">Agregar un curso</Nav.Link>
+          <Nav.Link href="/new">Agregar un curso</Nav.Link>
           <Nav.Link href="#courses">Mis inscripciones</Nav.Link>
           <Nav.Link href="#courses">Mis cursos</Nav.Link>
         </Nav>

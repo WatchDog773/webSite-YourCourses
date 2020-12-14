@@ -54,7 +54,11 @@ const SingUp = () => {
     <div className="container1">
       <div className="forms-container1">
         <div className="signin-signup">
-          <form action="#" className="sign-in-form">
+          <form
+            style={{ "align-items": "center" }}
+            action="#"
+            className="sign-in-form"
+          >
             <h2 className="title">Crear cuenta</h2>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
