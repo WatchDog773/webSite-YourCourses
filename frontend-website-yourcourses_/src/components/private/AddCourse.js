@@ -60,13 +60,7 @@ const AddCourse = () => {
 
             <Form.Group>
               <Form.Label>Descripcion</Form.Label>
-              <Form.Control
-                name="description"
-                value={form.description}
-                onChange={onChange}
-                type="text"
-                placeholder="Ej: Desarrollo del lado del servidor"
-              />
+              <Form.Control type="text" placeholder="Descripcion" />
             </Form.Group>
 
             <Form.Group>
@@ -80,7 +74,7 @@ const AddCourse = () => {
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group>  
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 name="price"
