@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useStateContext } from "../../utilities/Context";
 import BackToLogin from "../common/ButtonBackLogin";
 import ButtonExit from "../common/ButtonExit";
@@ -12,7 +12,7 @@ const NavBar = () => {
 
   const navButtonsNoUser = (
     <Navbar collapseOnSelect bg="light" expand="lg" variant="dark">
-      <Navbar.Brand href="#home">Your Courses</Navbar.Brand>
+      <Navbar.Brand href="/">Your Courses</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto"></Nav>
@@ -27,10 +27,11 @@ const NavBar = () => {
 
   const navButtonsUser = (
     <Navbar collapseOnSelect bg="light" expand="lg" variant="dark">
-      <Navbar.Brand href="#home">Your Courses</Navbar.Brand>
+      <Navbar.Brand href="/">Your Courses</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
+          <Nav.Link href="/startit">Cursos</Nav.Link>
           <Nav.Link href="#courses">Agregar un curso</Nav.Link>
           <Nav.Link href="#courses">Mis inscripciones</Nav.Link>
           <Nav.Link href="#courses">Mis cursos</Nav.Link>

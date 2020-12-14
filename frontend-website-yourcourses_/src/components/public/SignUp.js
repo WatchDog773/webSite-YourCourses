@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import imgRegister from "./register.svg";
 import "./Login&signUp.css";
 
+import ButtonGeneral from "../common/ButtonGeneral";
+
 import axios from "axios";
 
 import {
@@ -116,9 +118,7 @@ const SingUp = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
             </p>
-            <button className="btn" id="sign-in-btn">
-              Iniciar sesión
-            </button>
+            <ButtonGeneral contenido="Iniciar Sesión" ruta="/login" />
           </div>
           <img src={imgRegister} className="image" alt="imagen del registro" />
         </div>
