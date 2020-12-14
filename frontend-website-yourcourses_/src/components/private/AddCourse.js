@@ -60,7 +60,13 @@ const AddCourse = () => {
 
             <Form.Group>
               <Form.Label>Descripcion</Form.Label>
-              <Form.Control type="text" placeholder="Descripcion" />
+              <Form.Control
+                name="description"
+                value={form.description}
+                onChange={onChange}
+                type="text"
+                placeholder="Ej: Desarrollo de APIs en NodeJS"
+              />
             </Form.Group>
 
             <Form.Group>
@@ -74,7 +80,7 @@ const AddCourse = () => {
               />
             </Form.Group>
 
-            <Form.Group>  
+            <Form.Group>
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 name="price"
