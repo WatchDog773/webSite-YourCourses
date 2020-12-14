@@ -11,6 +11,7 @@ import StartIt from "./components/private/Start";
 import NotFound from "./components/public/NotFound";
 import Splash from "./components/public/Splash";
 import Courses from "./components/private/Courses";
+import AddCourse from "./components/private/AddCourse";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRouter from "./utilities/PrivateRouter";
@@ -30,6 +31,7 @@ function App() {
 
               <PrivateRouter path="/startit" exact component={StartIt} />
               <PrivateRouter path="/courses" exact component={Courses} />
+              <PrivateRouter path="/new" exact component={AddCourse} />
 
               <Route path="*" component={NotFound} />
             </Switch>

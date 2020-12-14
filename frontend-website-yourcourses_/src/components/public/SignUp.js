@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import imgRegister from "./register.svg";
 import "./Login&signUp.css";
 
+import ButtonGeneral from "../common/ButtonGeneral";
+
 import axios from "axios";
 
 import {
@@ -52,7 +54,11 @@ const SingUp = () => {
     <div className="container1">
       <div className="forms-container1">
         <div className="signin-signup">
-          <form action="#" className="sign-in-form">
+          <form
+            style={{ "align-items": "center" }}
+            action="#"
+            className="sign-in-form"
+          >
             <h2 className="title">Crear cuenta</h2>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
@@ -116,9 +122,7 @@ const SingUp = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
             </p>
-            <button className="btn" id="sign-in-btn">
-              Iniciar sesión
-            </button>
+            <ButtonGeneral contenido="Iniciar Sesión" ruta="/login" />
           </div>
           <img src={imgRegister} className="image" alt="imagen del registro" />
         </div>

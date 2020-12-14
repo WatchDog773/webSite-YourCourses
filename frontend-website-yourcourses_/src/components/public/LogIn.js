@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 /*import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; */
-import { Button } from "react-bootstrap";
-import {naxios as axios, setJWT} from '../../utilities/Axios'; 
-
-
+import { Button, Nav } from "react-bootstrap";
+import { naxios as axios, setJWT } from "../../utilities/Axios";
 
 import imgLogin from "./login.svg";
 import "./Login&signUp.css";
@@ -16,6 +14,8 @@ import {
   LOGIN_FETCHING_FAILED,
   LOGIN_SUCCESS,
 } from "../../utilities/store/reducers/auth.reducer";
+
+import ButtonGeneral from "../common/ButtonGeneral";
 
 //import axios from "axios";
 
@@ -106,7 +106,7 @@ const LogIn = () => {
     <div className="container1">
       <div className="forms-container1">
         <div className="signin-signup">
-          <form className="sign-in-form">
+          <form className="sign-in-form" style={{ "align-items": "center" }}>
             <h2 className="title">Iniciar sesión</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
@@ -159,9 +159,7 @@ const LogIn = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <button className="btn" id="sign-up-btn">
-              Crear cuenta
-            </button>
+            <ButtonGeneral ruta="/signup" contenido="Crear cuenta" />
           </div>
           <img src={imgLogin} className="image" alt="imagen del login" />
         </div>

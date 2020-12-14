@@ -65,6 +65,12 @@ const authReducer = (state = initialState, action = {}) => {
       return { ...state, isFetching: true };
     }
 
+    // https://www.youtube.com/watch?v=Xa7ECigMWRs
+    case LOGOUT: {
+      localStorage.removeItem("store_auth");
+      return { logged: false };
+    }
+
     case SIGNIN_SUCCES:
       if (action.payload) {
         return { ...initialState, searchFilter: action.payload.searchFilter };

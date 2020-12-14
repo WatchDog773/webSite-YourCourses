@@ -17,6 +17,9 @@ const ListCourses = () => {
       <Card className="m-4" key={o._id}>
         <h2>{o.name}</h2>
         <h3>{o.author}</h3>
+        <h3>{o.description}</h3>
+        <h3>{o.information}</h3>
+        <h3>{o.price}</h3>
       </Card>
     );
   });

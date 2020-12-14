@@ -41,10 +41,10 @@ input {
 
 form {
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
   flex-direction: column;
-  padding: 0rem 5rem;
+  padding: 1rem 5rem;
   transition: all 0.2s 0.7s;
   overflow: hidden;
   grid-column: 1 / 2;
