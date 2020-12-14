@@ -106,7 +106,7 @@ const LogIn = () => {
     <div className="container1">
       <div className="forms-container1">
         <div className="signin-signup">
-          <form className="sign-in-form">
+          <form className="sign-in-form" style={{ "align-items": "center" }}>
             <h2 className="title">Iniciar sesión</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
