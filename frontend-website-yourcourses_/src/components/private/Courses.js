@@ -1,6 +1,7 @@
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
 import { useEffect } from "react";
+import CardGroup from 'react-bootstrap/CardGroup'
 import { Card, Container } from "react-bootstrap";
 import {
   COURSES_LOADING,
@@ -14,13 +15,37 @@ const ListCourses = () => {
   //f dummy data
   const ListElements = courses.courses.map((o) => {
     return (
-      <Card className="m-4" key={o._id}>
+    /*
+    <Card className="m-4" key={o._id}>
         <h2>{o.name}</h2>
         <h3>{o.author}</h3>
         <h3>{o.description}</h3>
         <h3>{o.information}</h3>
         <h3>{o.price}</h3>
       </Card>
+    */
+      <CardGroup>
+  <Card>
+    
+    <Card.Body>
+      <Card.Title>{o.name}</Card.Title>
+      <Card.Text>{o.author}</Card.Text>
+      <Card.Text>{o.description}</Card.Text>
+      <Card.Text>{o.information}</Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">{o.price}</small>
+    </Card.Footer>
+  </Card>
+  
+</CardGroup>
+
+
+
+
+
+
+
     );
   });
 
