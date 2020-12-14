@@ -15,7 +15,7 @@ const AddCourse = () => {
 
             <Form.Group>
               <Form.Label>Descripcion</Form.Label>
-              <Form.Control type="text" placeholder="Descripcio" />
+              <Form.Control type="text" placeholder="Descripcion" />
             </Form.Group>
 
             <Form.Group>
@@ -23,7 +23,7 @@ const AddCourse = () => {
               <Form.Control type="text" placeholder="Informacion" />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group>  
               <Form.Label>Precio</Form.Label>
               <Form.Control type="text" placeholder="Precio" />
             </Form.Group>

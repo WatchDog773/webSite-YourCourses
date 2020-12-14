@@ -1,8 +1,11 @@
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
 import { useEffect } from "react";
-import CardGroup from 'react-bootstrap/CardGroup'
+import CardDeck from 'react-bootstrap/CardDeck'
 import { Card, Container } from "react-bootstrap";
+
+
+
 import {
   COURSES_LOADING,
   COURSES_LOADED,
@@ -15,30 +18,26 @@ const ListCourses = () => {
   //f dummy data
   const ListElements = courses.courses.map((o) => {
     return (
-    
-      
 
-      <CardGroup>
-  <Card>
-    
-    <Card.Body>
-      <Card.Title>{o.name}</Card.Title>
+
+  <CardDeck>
+
+  <Card className="text-center">
+  <Card.Footer></Card.Footer>
+    <Card.Body >
+      <Card.Title >{o.name}</Card.Title>
       <Card.Text>{o.author}</Card.Text>
       <Card.Text>{o.description}</Card.Text>
       <Card.Text>{o.information}</Card.Text>
     </Card.Body>
     <Card.Footer>
-      <small className="text-muted">{o.price}</small>
+      <small className="text-muted">$ {o.price}</small>
     </Card.Footer>
-  </Card>
+    </Card>
   
-</CardGroup>
-
-
-
-
-
-
+  
+  
+</CardDeck>
 
     );
   });
