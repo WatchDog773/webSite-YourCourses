@@ -17,6 +17,10 @@ router.get(
   coursesController.updateLesson
 );
 
+// TODO: LECCIONES
+router.get("/lessons/:idCourse", coursesController.getLessons);
+router.get("/inscription/:userId", coursesController.mysubscrib);
+
 router.post("/new", securityConfig.verifyUser, coursesController.createCourse); // Crea un nuevo curso
 
 router.put(
@@ -24,7 +28,7 @@ router.put(
   securityConfig.verifyUser,
   coursesController.updateCourse
 ); // Actualiza el curso por id de curso
-router.put(
+router.post(
   "/addLesson/:id",
   securityConfig.verifyUser,
   coursesController.addLesson
@@ -33,6 +37,12 @@ router.put(
   "/:id/lesson/:lessonId",
   securityConfig.verifyUser,
   coursesController.updateLesson
+);
+
+router.put(
+  "/:userId/course/:courseId",
+  securityConfig.verifyUser,
+  coursesController.subscribe
 );
 
 module.exports = router;

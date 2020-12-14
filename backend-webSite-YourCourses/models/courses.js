@@ -92,6 +92,7 @@ class courses {
 
   async getAllLessonsByCourse(cursoId) {
     try {
+      console.log(cursoId);
       const _id = objectId(cursoId);
       const result = await this.collection.findOne({ _id });
       return result.lessons;
@@ -136,6 +137,38 @@ class courses {
         },
       };
       await this.collection.updateOne({ _id, "lessons.id": id }, docOperations);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async subscribe(idCourse, idUser) {
+    try {
+      console.log(idCourse, idUser);
+      const inscriptioId = new objectId(idCourse);
+      const _id = new objectId(idUser);
+      const docOperations = { $push: { inscriptions: inscriptioId } };
+      const reesult = await this.collection.findOneAndUpdate(
+        { _id },
+        docOperations,
+        {
+          returnOriginal: false,
+        }
+      );
+      return reesult;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findSubscribe(idUser) {
+    try {
+      console.log(idUser);
+      const _id = new objectId(idUser);
+      const reesult = await this.collection
+        .find({ inscription: _id })
+        .toArray();
+      return reesult;
     } catch (error) {
       throw error;
     }
