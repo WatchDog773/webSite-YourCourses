@@ -19,7 +19,9 @@ const ListCourses = () => {
   const [{ auth, courses }, dispatch] = useStateContext();
   const history = useHistory();
 
-  const ListElements = courses.courses.map((o) => {
+  let ListElements = [];
+
+  ListElements = courses.courses.map((o) => {
     if (auth.user.email != o.author) {
       return (
         <CardDeck>
@@ -95,6 +97,7 @@ const ListCourses = () => {
     }
   });
 
+  console.log("El largo de la lista: ", ListElements.length);
   useEffect(() => {
     dispatch({ type: COURSES_RESET });
     dispatch({ type: COURSES_LOADING });
