@@ -117,6 +117,9 @@ const ListCourses = () => {
                 onClick={() => {
                   paxios
                     .put(`/api/courses/${auth.user._id}/course/${_id}`)
+                    .then((result) => {
+                      history.push("/startit");
+                    })
                     .catch((ex) => {
                       console.log(ex);
                     });
