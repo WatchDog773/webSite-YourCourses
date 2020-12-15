@@ -22,38 +22,40 @@ import {
 const ListCourses = () => {
   const [{ auth, courses }, dispatch] = useStateContext();
   const history = useHistory();
-  
-  const ListElements = courses.courses.map((o) => {
+
+  let ListElements = [];
+
+  ListElements = courses.courses.map((o) => {
     if (auth.user.email != o.author) {
       return (
         <div className="col-5 mt-5">
           <CardDeck>
-          <Card className="text-center">
-            <Card.Footer></Card.Footer>
-            <Card.Body>
-              <Card.Title>{o.name}</Card.Title>
-              <Card.Text>{o.author}</Card.Text>
-              <Card.Text>{o.description}</Card.Text>
-              <Card.Text>{o.information}</Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">$ {o.price}</small>
-            </Card.Footer>
-            <Card.Body>
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: COURSES_SET_CURRENT,
-                    payload: { _id: o._id },
-                  });
-                  history.push("/courses/one");
-                }}
-              >
-                Ver más
-              </Button>
-            </Card.Body>
-          </Card>
-        </CardDeck>
+            <Card className="text-center">
+              <Card.Footer></Card.Footer>
+              <Card.Body>
+                <Card.Title>{o.name}</Card.Title>
+                <Card.Text>{o.author}</Card.Text>
+                <Card.Text>{o.description}</Card.Text>
+                <Card.Text>{o.information}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">$ {o.price}</small>
+              </Card.Footer>
+              <Card.Body>
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: COURSES_SET_CURRENT,
+                      payload: { _id: o._id },
+                    });
+                    history.push("/courses/one");
+                  }}
+                >
+                  Ver más
+                </Button>
+              </Card.Body>
+            </Card>
+          </CardDeck>
         </div>
       );
     } else {
@@ -101,6 +103,7 @@ const ListCourses = () => {
     }
   });
 
+  console.log("El largo de la lista: ", ListElements.length);
   useEffect(() => {
     dispatch({ type: COURSES_RESET });
     dispatch({ type: COURSES_LOADING });
@@ -116,11 +119,8 @@ const ListCourses = () => {
   }, []);
 
   return (
-
     <div className="container">
-      <div className="row">
-      {ListElements}
-      </div>
+      <div className="row">{ListElements}</div>
     </div>
   );
 };

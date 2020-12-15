@@ -1,6 +1,6 @@
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Link } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
 import { Card, Container, Button } from "react-bootstrap";
@@ -47,8 +47,10 @@ const ListCourses = () => {
         <Card className="text-center m-3">
           <Card.Body>
             <Card.Title>{o.name}</Card.Title>
-            <Card.Text>{o.description}</Card.Text>  
-            <Card.Text>{o.video}</Card.Text>  
+            <Card.Text>{o.description}</Card.Text>
+            <Button target="_blank" href={o.video}>
+              Ver video
+            </Button>
           </Card.Body>
         </Card>
       </CardDeck>
