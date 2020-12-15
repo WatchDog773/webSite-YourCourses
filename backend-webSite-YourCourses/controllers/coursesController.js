@@ -143,14 +143,7 @@ exports.addLesson = async (req, res, next) => {
   try {
     const message = [];
     const { id } = req.params;
-    //console.log(id);
     const { name, description, video } = req.body;
-
-    /*     const oneCourse = await modelCourses.getOneCourse(id);
-
-    if (req.user.email != oneCourse.author) {
-      message.push({ message: "No tiene permisos para realizar esta acción" });
-    } */
 
     if (!name) {
       message.push({ message: "La lección debe tener un nombre" });
@@ -158,9 +151,6 @@ exports.addLesson = async (req, res, next) => {
     if (!description) {
       message.push({ message: "La lección debe tener una descripción" });
     }
-    /*       if (!video) {
-        message.push({ message: "La lección debe tener un video" });
-      } */
 
     if (message.length) {
       res.status(400).json(message);
@@ -242,7 +232,6 @@ exports.mysubscrib = async (req, res, next) => {
   try {
     const { userId } = req.params;
     const result = await modelCourses.findSubscribe(userId);
-    // console.log(result);
     res.status(200).json(result);
   } catch (error) {
     console.log(error);

@@ -34,11 +34,9 @@ class authAndUser {
         pwdexp: new Date().getTime() + 1000 * 60 * 10, // 10 minutos
         oldpwd: [],
         stateAccount,
-        //roles: ["public"], TODO: No creo ocupar roles ahorita
       };
-      //const result = await this.collection.insertOne(add);
+
       await this.collection.insertOne(add);
-      //return result;
     } catch (error) {
       throw error;
     }

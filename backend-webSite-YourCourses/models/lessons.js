@@ -12,9 +12,6 @@ class lessons {
       .getDb()
       .then(async (db) => {
         this.collection = await db.collection("lessons");
-        /*         if (process.env.ENSURE_INDEX == "1") {
-          await this.collection.createIndex({ email: 1 }, { unique: true });
-        } */
       })
       .catch((error) => {
         throw error;
@@ -76,7 +73,6 @@ class lessons {
       await this.collection.updateOne({ _id }, docOptions, {
         returnOriginal: false,
       });
-      //return result;
     } catch (error) {
       throw error;
     }
