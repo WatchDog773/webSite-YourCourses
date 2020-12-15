@@ -145,6 +145,7 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+  font-size: 0.8em;
 }
 
 .btn:hover {
