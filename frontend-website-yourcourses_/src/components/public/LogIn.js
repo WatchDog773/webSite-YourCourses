@@ -71,6 +71,7 @@ const LogIn = () => {
           alert("Complete los campos para poder ingresar");
         } else {
           console.log(error);
+          alert("Algo salio mál contacte con el administrador de la pagina");
         }
       });
   };
