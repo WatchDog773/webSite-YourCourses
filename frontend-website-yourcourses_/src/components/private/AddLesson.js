@@ -14,8 +14,8 @@ const AddLesson = () => {
   const [form, setForm] = useState({
     name: "",
     description: "",
-    //video
-  });
+    video:"", 
+   });
 
   const onChange = (e) => {
     e.preventDefault();
@@ -68,6 +68,18 @@ const AddLesson = () => {
                 placeholder="Ej: Passport"
               />
             </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Video URL</Form.Label>
+              <Form.Control
+                name="video"
+                value={form.video}
+                onChange={onChange}
+                type="text"
+                placeholder="Ej: https://"
+              />
+            </Form.Group>
+
 
             <Button onClick={AddNewLesson} variant="primary">
               Guardar
