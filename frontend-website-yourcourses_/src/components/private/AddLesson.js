@@ -87,6 +87,87 @@ const AddLesson = () => {
             </Button>
           </Form>
         </Card>
+        <Card className="mt-3">
+          <Container>
+            <h1>Instrucciones para agregar tu video</h1>
+          </Container>
+          <Container>
+            <Card className="m-3">
+              <Container>
+                <h2>
+                  Primero sube el video a una plataforma de almacenamiento, en
+                  este caso te recomendamos Google Drive
+                </h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso1.jpeg" />
+              </Container>
+            </Card>
+
+            <Card className="m-3">
+              <Container>
+                <h2>
+                  Luego haga clic derecho sobre el video y luego de clic en
+                  compartir
+                </h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso2.png" />
+              </Container>
+            </Card>
+
+            <Card className="m-3">
+              <Container>
+                <h2>
+                  Aparecera lo siguiente y de clic en cambiar, como se muestra a
+                  continuacion
+                </h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso3.PNG" />
+              </Container>
+            </Card>
+
+            <Card className="m-3">
+              <Container>
+                <h2>
+                  Luego presione clic donde dice restringido (Si el video nunca
+                  ha sido compartido)y aparecera este menu, luego de click en:
+                  Cualquier persona con el enlace como se muestra a continuacion
+                </h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso4.PNG" />
+              </Container>
+            </Card>
+
+            <Card className="m-3">
+              <Container>
+                <h2>
+                  A continuacion haga clic donde se muestra en la imagen, para
+                  copiar el enlace al portapapeles
+                </h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso5.PNG" />
+              </Container>
+            </Card>
+
+            <Card className="m-3">
+              <Container>
+                <h2>Haga clic en listo para confirmar los cambios</h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso6.PNG" />
+              </Container>
+            </Card>
+
+            <Card className="m-3">
+              <Container>
+                <h2>
+                  Pegue el enlace copiado en el formulario que se muestra en el
+                  principio de esta pagina
+                </h2>
+
+                <img style={{ "max-width": "100%" }} src="assets/paso7.PNG" />
+              </Container>
+            </Card>
+          </Container>
+        </Card>
       </Container>
       <Footer />
     </div>
