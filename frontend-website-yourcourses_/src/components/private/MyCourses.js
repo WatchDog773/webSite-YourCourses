@@ -62,12 +62,21 @@ const ListCourses = () => {
             >
               Ver lecciones
             </Button>
-            <Button>Agregar lecciones</Button>
+            <Button
+              onClick={() => {
+                dispatch({
+                  type: COURSES_SET_CURRENT,
+                  payload: { _id: o._id },
+                });
+                history.push("/newLesson");
+              }}
+            >
+              Agregar lecciones
+            </Button>
             <Button>Eliminar</Button>
           </Card.Body>
         </Card>
       </CardDeck>
-      
     );
   });
 

@@ -163,10 +163,10 @@ class courses {
 
   async findSubscribe(idUser) {
     try {
-      console.log(idUser);
+      //console.log(idUser);
       const _id = new objectId(idUser);
       const reesult = await this.collection
-        .find({ inscription: _id })
+        .find({ inscriptions: _id })
         .toArray();
       return reesult;
     } catch (error) {

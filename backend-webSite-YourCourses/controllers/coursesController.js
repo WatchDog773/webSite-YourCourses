@@ -242,7 +242,7 @@ exports.mysubscrib = async (req, res, next) => {
   try {
     const { userId } = req.params;
     const result = await modelCourses.findSubscribe(userId);
-    console.log(result);
+    // console.log(result);
     res.status(200).json(result);
   } catch (error) {
     console.log(error);

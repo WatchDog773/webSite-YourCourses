@@ -15,6 +15,7 @@ import AddCourse from "./components/private/AddCourse";
 import OneCourse from "./components/private/Lessons";
 import MyCourses from "./components/private/MyCourses";
 import AddLesson from "./components/private/AddLesson";
+import MyInscriptions from "./components/private/MyInscriptions";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRouter from "./utilities/PrivateRouter";
@@ -38,7 +39,11 @@ function App() {
               <PrivateRouter path="/courses/one" exact component={OneCourse} />
               <PrivateRouter path="/myCourses" exact component={MyCourses} />
               <PrivateRouter path="/newLesson" exact component={AddLesson} />
-
+              <PrivateRouter
+                path="/myInscriptions"
+                exact
+                component={MyInscriptions}
+              />
               <Route path="*" component={NotFound} />
             </Switch>
           </Splash>

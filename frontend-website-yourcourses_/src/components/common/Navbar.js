@@ -33,7 +33,7 @@ const NavBar = () => {
         <Nav className="mr-auto">
           <Nav.Link href="/startit">Cursos</Nav.Link>
           <Nav.Link href="/new">Agregar un curso</Nav.Link>
-          <Nav.Link href="#courses">Mis inscripciones</Nav.Link>
+          <Nav.Link href="/myInscriptions">Mis inscripciones</Nav.Link>
           <Nav.Link href="/myCourses">Mis cursos</Nav.Link>
         </Nav>
         <Nav className="ml-auto">
