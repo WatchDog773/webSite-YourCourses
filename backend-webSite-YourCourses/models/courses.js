@@ -51,9 +51,7 @@ class courses {
 
   async addCourse(data) {
     try {
-      //const { _id, nombre, precio } = data;
       await this.collection.insertOne(data);
-      //return result;
     } catch (error) {
       throw error;
     }
@@ -66,7 +64,6 @@ class courses {
       await this.collection.updateOne({ _id }, docOptions, {
         returnOriginal: false,
       });
-      //return result;
     } catch (error) {
       throw error;
     }
@@ -108,9 +105,7 @@ class courses {
         .findOne({ _id })
         .then((doc) => {
           for (const i in doc.lessons) {
-            //console.log(doc.lessons[i]);
             if (doc.lessons[i].id == lessonId) {
-              //console.log(doc.lessons[i]);
               return doc.lessons[i];
             }
           }
@@ -163,7 +158,6 @@ class courses {
 
   async findSubscribe(idUser) {
     try {
-      //console.log(idUser);
       const _id = new objectId(idUser);
       const reesult = await this.collection
         .find({ inscriptions: _id })

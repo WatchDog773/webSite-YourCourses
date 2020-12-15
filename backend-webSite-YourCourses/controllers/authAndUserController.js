@@ -73,7 +73,6 @@ exports.logIn = async (req, res, next) => {
       }
       if (_idUser == false) {
         // Si devuelve falso
-        //res.send(`Viene falso: ${user}`);
         message.push({ message: "Correo y/o contraseña incorrecto/a" });
       }
 
@@ -81,7 +80,6 @@ exports.logIn = async (req, res, next) => {
         res.status(403).json(message);
       } else {
         // Si devuelve verdadero
-        //res.send(`Viene verdadero: ${user}`);
         const token = await securityConfig.getToken({ _id: _idUser, email });
         res.status(200).json({
           message: "Bienvenido/a",
