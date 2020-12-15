@@ -156,8 +156,7 @@ const LogIn = () => {
           <div className="content">
             <h3>¿ Nuevo aquí ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+              Aprende desde casa y con tu celular con Your Courses
             </p>
             <ButtonGeneral ruta="/signup" contenido="Crear cuenta" />
           </div>
