@@ -23,74 +23,74 @@ const ListCourses = () => {
       return (
         <div className="col-md-4">
           <CardDeck>
-          <Card className="text-center mt-2">
-            <Card.Body>
-              <Card.Title>{o.name}</Card.Title>
-              <Card.Text>{o.author}</Card.Text>
-              <Card.Text>{o.description}</Card.Text>
-              <Card.Text>{o.information}</Card.Text>
-            </Card.Body>  
-            <Card.Footer>
-              <small className="text-muted">$ {o.price}</small>
-            </Card.Footer>
-            <Card.Body>
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: COURSES_SET_CURRENT,
-                    payload: { _id: o._id },
-                  });
-                  history.push("/courses/one");
-                }}
-              >
-                Ver más
-              </Button>
-            </Card.Body>
-          </Card>
-        </CardDeck>
+            <Card className="text-center mt-2">
+              <Card.Body>
+                <Card.Title>{o.name}</Card.Title>
+                <Card.Text>{o.author}</Card.Text>
+                <Card.Text>{o.description}</Card.Text>
+                <Card.Text>{o.information}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">$ {o.price}</small>
+              </Card.Footer>
+              <Card.Body>
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: COURSES_SET_CURRENT,
+                      payload: { _id: o._id },
+                    });
+                    history.push("/courses/one");
+                  }}
+                >
+                  Ver más
+                </Button>
+              </Card.Body>
+            </Card>
+          </CardDeck>
         </div>
       );
     } else {
       return (
         <div className="col-md-4">
           <CardDeck>
-          <Card className="text-center mt-2 ml-2">
-            <Card.Body>
-              <Card.Title>{o.name}</Card.Title>
-              <Card.Text>{o.author}</Card.Text>
-              <Card.Text>{o.description}</Card.Text>
-              <Card.Text>{o.information}</Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">$ {o.price}</small>
-            </Card.Footer>
-            <Card.Body>
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: COURSES_SET_CURRENT,
-                    payload: { _id: o._id },
-                  });
-                  history.push("/courses/one");
-                }}
-              >
-                Ver lecciones
-              </Button>
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: COURSES_SET_CURRENT,
-                    payload: { _id: o._id },
-                  });
-                  history.push("/newLesson");
-                }}
-              >
-                Agregar lecciones
-              </Button>
-              <Button>Eliminar</Button>
-            </Card.Body>
-          </Card>
-        </CardDeck>
+            <Card className="text-center mt-2 ml-2">
+              <Card.Body>
+                <Card.Title>{o.name}</Card.Title>
+                <Card.Text>Autor: {o.author}</Card.Text>
+                <Card.Text>{o.description}</Card.Text>
+                <Card.Text>{o.information}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">$ {o.price}</small>
+              </Card.Footer>
+              <Card.Body>
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: COURSES_SET_CURRENT,
+                      payload: { _id: o._id },
+                    });
+                    history.push("/courses/one");
+                  }}
+                >
+                  Ver lecciones
+                </Button>
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: COURSES_SET_CURRENT,
+                      payload: { _id: o._id },
+                    });
+                    history.push("/newLesson");
+                  }}
+                >
+                  Agregar lecciones
+                </Button>
+                <Button>Eliminar</Button>
+              </Card.Body>
+            </Card>
+          </CardDeck>
         </div>
       );
     }
@@ -112,10 +112,7 @@ const ListCourses = () => {
 
   return (
     <div className="container">
-      <div className="row">
-      {ListElements}
-      </div>
-      
+      <div className="row">{ListElements}</div>
     </div>
   );
 };
