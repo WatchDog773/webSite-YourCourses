@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
 import { Card, Container, Button } from "react-bootstrap";
 
+import Navbar from "../common/Navbar";
+import Footer from "../common/Footer";
+
 import {
   LESSONS_LOADING,
   LESSONS_LOADED,
@@ -95,15 +98,19 @@ const ListCourses = () => {
     if (ListElements.length == 0) {
       return (
         <div>
+          <Navbar />
           <Container>
             <h2>No hay lecciones aún</h2>
           </Container>
+          <Footer />
         </div>
       );
     } else {
       return (
         <div>
+          <Navbar />
           <Container>{ListElements}</Container>
+          <Footer />
         </div>
       );
     }
@@ -113,15 +120,19 @@ const ListCourses = () => {
       if (ListElements.length == 0) {
         return (
           <div>
+            <Navbar />
             <Container>
               <h2>No hay lecciones aún</h2>
             </Container>
+            <Footer />
           </div>
         );
       } else {
         return (
           <div>
+            <Navbar />
             <Container>{ListElements}</Container>
+            <Footer />
           </div>
         );
       }
@@ -130,14 +141,17 @@ const ListCourses = () => {
       if (ListElements.length == 0) {
         return (
           <div>
+            <Navbar />
             <Container>
               <h2>No hay lecciones aún</h2>
             </Container>
+            <Footer />
           </div>
         );
       } else {
         return (
           <div>
+            <Navbar />
             <Container>
               <Card>
                 <Button
@@ -157,6 +171,7 @@ const ListCourses = () => {
               </Card>
               {ListElements}
             </Container>
+            <Footer />
           </div>
         );
       }
