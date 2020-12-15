@@ -1,5 +1,6 @@
 import NavBar from "../common/Navbar";
 import { Button, Form, Container, Card } from "react-bootstrap";
+import Footer from "../common/Footer";
 
 import { COURSES_RESET } from "../../utilities/store/reducers/courses.reducer";
 import { useStateContext } from "../../utilities/Context";
@@ -97,6 +98,7 @@ const AddCourse = () => {
           </Form>
         </Card>
       </Container>
+      <Footer />
     </div>
   );
 };
