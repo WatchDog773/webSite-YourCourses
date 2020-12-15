@@ -84,20 +84,36 @@ const ListCourses = () => {
         </CardDeck>
       );
     } else {
-      return (
-        <CardDeck>
-          <Card className="text-center m-3">
-            <Card.Body>
-              <Card.Title>{o.name}</Card.Title>
-              <Card.Text>{o.description}</Card.Text>
-              {/*               <Button target="_blank" href={o.video}>
-                Ver video
-              </Button> */}
-              <Card.Text>Inscribite para ver las lecciones</Card.Text>
-            </Card.Body>
-          </Card>
-        </CardDeck>
-      );
+      if (pertCourse == auth.user.email) {
+        return (
+          <CardDeck>
+            <Card className="text-center m-3">
+              <Card.Body>
+                <Card.Title>{o.name}</Card.Title>
+                <Card.Text>{o.description}</Card.Text>
+                <Button target="_blank" href={o.video}>
+                  Ver video
+                </Button>
+              </Card.Body>
+            </Card>
+          </CardDeck>
+        );
+      } else {
+        return (
+          <CardDeck>
+            <Card className="text-center m-3">
+              <Card.Body>
+                <Card.Title>{o.name}</Card.Title>
+                <Card.Text>{o.description}</Card.Text>
+                {/*               <Button target="_blank" href={o.video}>
+                  Ver video
+                </Button> */}
+                <Card.Text>Inscribite para ver las lecciones</Card.Text>
+              </Card.Body>
+            </Card>
+          </CardDeck>
+        );
+      }
     }
   });
   //const cour = courses.courses[2].inscriptions.length;
