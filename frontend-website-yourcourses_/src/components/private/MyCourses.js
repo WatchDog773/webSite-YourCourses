@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
 import { Card, Container, Button } from "react-bootstrap";
 import Navbar from "../common/Navbar";
+import Footer from "../common/Footer";
 
 import {
   COURSES_LOADING,
@@ -66,6 +67,7 @@ const ListCourses = () => {
           </Card.Body>
         </Card>
       </CardDeck>
+      
     );
   });
 
@@ -73,6 +75,7 @@ const ListCourses = () => {
     <div>
       <NavBar />
       <Container>{ListElements}</Container>
+      <Footer />
     </div>
   );
 };

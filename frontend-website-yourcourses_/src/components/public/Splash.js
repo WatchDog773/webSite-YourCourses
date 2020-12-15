@@ -3,6 +3,10 @@ import { useStateContext } from "../../utilities/Context";
 import { paxios, setJWT, setUnAuthInterceptor } from "../../utilities/Axios";
 // import { Redirector } from "../common/Redirector";
 import ButtonExit from "../common/ButtonExit";
+import Navbar from "../common/Navbar";
+import Footer from "../common/Footer";
+import { Card} from "react-bootstrap";
+import CardDeck from "react-bootstrap/CardDeck";
 
 import { APP_INIT, APP_MIN } from "../../utilities/store/reducers/app.reducer";
 import { JWT_INVALID } from "../../utilities/store/reducers/auth.reducer";
@@ -29,12 +33,22 @@ const Splash = ({ children }) => {
   console.log(app.minTimeElapsed);
   if (!app.initialized && app.minTimeElapsed) {
     return (
-      <Container>
-        <h1>
-          Oops Algo salio mal, no pudimos reconocerte, por favor inicia sesion
-          <ButtonExit contenido="Volver al inicio"></ButtonExit>
-        </h1>
-      </Container>
+      <div>
+        <CardDeck> 
+          <Card className="text-center m-3">
+              <Card.Footer></Card.Footer>
+              <Navbar />
+              <Container>
+                <h1>
+                  ¡Oops Algo salio mal! 
+                </h1>
+                <h2>No pudimos reconocerte, por favor inicia sesión</h2>
+                <ButtonExit contenido="Volver al inicio"></ButtonExit>
+              </Container>
+            </Card>
+        </CardDeck> 
+        <Footer />
+      </div>
     );
   } else {
     return <section>{children}</section>;
