@@ -28,9 +28,9 @@ const ListCourses = () => {
   ListElements = courses.courses.map((o) => {
     if (auth.user.email != o.author) {
       return (
-        <div className="col-5 mt-5">
+        <div className="col-md-4 mt-5">
           <CardDeck>
-            <Card className="text-center">
+            <Card className="text-center mt-2">
               <Card.Footer></Card.Footer>
               <Card.Body>
                 <Card.Title>{o.name}</Card.Title>
@@ -60,8 +60,9 @@ const ListCourses = () => {
       );
     } else {
       return (
-        <CardDeck>
-          <Card className="text-center m-3">
+        <div className="col-md-4">
+          <CardDeck>
+          <Card className="text-center mt-2">
             <Card.Footer></Card.Footer>
             <Card.Body>
               <Card.Title>{o.name}</Card.Title>
@@ -99,6 +100,7 @@ const ListCourses = () => {
             </Card.Body>
           </Card>
         </CardDeck>
+        </div>
       );
     }
   });
@@ -121,7 +123,11 @@ const ListCourses = () => {
   return (
     <div >
       <Navbar />
-      <Container>{ListElements}</Container>
+      <div className="container">
+        <div className="row">
+        {ListElements}
+        </div>
+      </div>
       <Footer />
     </div>
   );
