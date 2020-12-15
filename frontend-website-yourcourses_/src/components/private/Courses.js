@@ -43,18 +43,7 @@ const ListCourses = () => {
                   history.push("/courses/one");
                 }}
               >
-                Ver lecciones
-              </Button>
-              <Button
-                onClick={() => {
-                  paxios
-                    .put(`api/courses/${auth.user._id}/course/${o._id}`)
-                    .catch((ex) => {
-                      console.log(ex);
-                    });
-                }}
-              >
-                Inscribirse
+                Ver más
               </Button>
             </Card.Body>
           </Card>
@@ -86,7 +75,17 @@ const ListCourses = () => {
               >
                 Ver lecciones
               </Button>
-              <Button>Agregar lecciones</Button>
+              <Button
+                onClick={() => {
+                  dispatch({
+                    type: COURSES_SET_CURRENT,
+                    payload: { _id: o._id },
+                  });
+                  history.push("/newLesson");
+                }}
+              >
+                Agregar lecciones
+              </Button>
               <Button>Eliminar</Button>
             </Card.Body>
           </Card>

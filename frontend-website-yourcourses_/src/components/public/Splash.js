@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useStateContext } from "../../utilities/Context";
 import { paxios, setJWT, setUnAuthInterceptor } from "../../utilities/Axios";
 // import { Redirector } from "../common/Redirector";
+import ButtonExit from "../common/ButtonExit";
 
 import { APP_INIT, APP_MIN } from "../../utilities/store/reducers/app.reducer";
 import { JWT_INVALID } from "../../utilities/store/reducers/auth.reducer";
@@ -26,12 +27,12 @@ const Splash = ({ children }) => {
     }
   }, []);
   console.log(app.minTimeElapsed);
-  if (!(app.initialized && app.minTimeElapsed)) {
+  if (!app.initialized && app.minTimeElapsed) {
     return (
       <Container>
         <h1>
           Oops Algo salio mal, no pudimos reconocerte, por favor inicia sesion
-          <ButtonBackLogin>Iniciar Sesión</ButtonBackLogin>
+          <ButtonExit contenido="Volver al inicio"></ButtonExit>
         </h1>
       </Container>
     );

@@ -147,7 +147,7 @@ class courses {
       console.log(idCourse, idUser);
       const inscriptioId = new objectId(idCourse);
       const _id = new objectId(idUser);
-      const docOperations = { $push: { inscriptions: inscriptioId } };
+      const docOperations = { $addToSet: { inscriptions: inscriptioId } };
       const reesult = await this.collection.findOneAndUpdate(
         { _id },
         docOperations,
@@ -169,6 +169,21 @@ class courses {
         .find({ inscription: _id })
         .toArray();
       return reesult;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async verifySubs(idCourse, idUser) {
+    try {
+      const _id = new objectId(idCourse);
+      const id = new objectId(idUser);
+      const result = await this.collection.findOne({ _id, inscriptions: id });
+      if (!result) {
+        return false;
+      } else {
+        return true;
+      }
     } catch (error) {
       throw error;
     }

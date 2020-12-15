@@ -1,6 +1,6 @@
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
 import { Card, Container, Button } from "react-bootstrap";
@@ -10,30 +10,38 @@ import {
   LESSONS_LOADED,
   LESSONS_ERROR,
   LESSONS_RESET,
-  LESSONS_SET_CURRENT,
 } from "../../utilities/store/reducers/lessons.reducer";
 
 const ListCourses = () => {
-  const [{ lessons, courses }, dispath] = useStateContext();
+  const [{ auth, lessons, courses }, dispath] = useStateContext();
   const history = useHistory();
   const _id = courses.currentId;
-  console.log("El Id", _id);
+  //console.log("El Id", _id);
+  let vInscription = null;
+  // var [vInscription, seti] = useState(false);
+
   useEffect(() => {
+    // paxios
+    //   .get(`/api/courses/${_id}/inscription/${auth.user._id}`)
+    //   .then(({ data }) => {})
+    //   .catch((ex) => {
+    //     console.log(ex);
+    //   });
+
     dispath({ type: LESSONS_RESET });
     dispath({ type: LESSONS_LOADING });
     paxios
       .get(`/api/courses/lessons/${_id}`)
       .then(({ data }) => {
         dispath({ type: LESSONS_LOADED, payload: data });
-        console.log("La data", data);
-        //dispath({ type: LESSONS_RESET });
       })
       .catch((ex) => {
         dispath({ type: LESSONS_ERROR });
       }); //end paxios
   }, []);
 
-  const ListElements = lessons.lessons.map((o) => {
+  let ListElements = [];
+  ListElements = lessons.lessons.map((o) => {
     return (
       <CardDeck>
         <Card className="text-center m-3">
@@ -44,12 +52,87 @@ const ListCourses = () => {
       </CardDeck>
     );
   });
+  //const cour = courses.courses[2].inscriptions.length;
+  const cour = courses.courses;
+  for (const i in cour) {
+    //console.log(doc.lessons[i]);
 
-  return (
-    <div>
-      <Container>{ListElements}</Container>
-    </div>
-  );
+    if (cour[i]._id == _id) {
+      //console.log("Encontre el curso: ", cour[i]);
+      for (const j in cour[i].inscriptions) {
+        if (cour[i].inscriptions[j] == auth.user._id) {
+          //console.log("Encontre la inscription: ", cour[i].inscriptions[j]);
+          vInscription = true;
+        } else {
+          console.log("No encontre la inscripcion");
+        }
+      }
+    } else {
+      console.log("No encontre el curso :o");
+    }
+
+    /*     if (courses[i].id == lessonId) {
+      //console.log(doc.lessons[i]);
+      return doc.lessons[i];
+    } */
+  }
+  //console.log(courses.courses);
+  // console.log("Curso", " ", cour);
+
+  //console.log("Elementos: ", ListElements.length);
+  console.log("El falso o verdadero: ");
+  if (vInscription) {
+    console.log("Paso aqui al si true");
+    if (ListElements.length == 0) {
+      return (
+        <div>
+          <Container>
+            <h2>No hay lecciones aún</h2>
+          </Container>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Container>{ListElements}</Container>
+        </div>
+      );
+    }
+  } else {
+    console.log("paso al if si false");
+    if (ListElements.length == 0) {
+      return (
+        <div>
+          <Container>
+            <h2>No hay lecciones aún</h2>
+          </Container>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Container>
+            <Card>
+              <Button
+                onClick={() => {
+                  paxios
+                    .put(`/api/courses/${auth.user._id}/course/${_id}`)
+                    .catch((ex) => {
+                      console.log(ex);
+                    });
+                }}
+              >
+                Inscribirse
+              </Button>
+            </Card>
+            {ListElements}
+          </Container>
+        </div>
+      );
+    }
+  }
+
+  //
 };
 
 export default ListCourses;

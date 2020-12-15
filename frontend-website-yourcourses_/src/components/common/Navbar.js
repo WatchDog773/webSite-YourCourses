@@ -38,7 +38,7 @@ const NavBar = () => {
         </Nav>
         <Nav className="ml-auto">
           <Nav.Item>
-            <ButtonExit />
+            <ButtonExit contenido="Salir" />
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
