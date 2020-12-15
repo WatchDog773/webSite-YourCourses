@@ -65,7 +65,7 @@ const Footer = () => {
 </CardGroup>
 
 <Card collapseOnSelect bg="dark" expand="lg" variant="dark" className="text-center">
-<Card.Footer className="text-muted" className="text-white">©2020 Your Courses Todos los derechos reservados</Card.Footer>
+<Card.Footer className="text-muted text-white">©2020 Your Courses Todos los derechos reservados</Card.Footer>
 </Card>
 </div>
 

@@ -1,15 +1,11 @@
-// /inscription/:userId
-
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
-// import { Card, Container, Button, Form } from "react-bootstrap";
 import { Card, Container, Button, Row } from "react-bootstrap";
 import ButtonGeneral from "../common/ButtonGeneral";
 import imgLessons from "./Lessons.png";
-import axios from "axios";
 
 import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
@@ -29,7 +25,7 @@ const ListCourses = () => {
   let ListElements = [];
 
   ListElements = courses.courses.map((o) => {
-    if (auth.user.email != o.author) {
+    if (auth.user.email !== o.author) {
       return (
         <div className="col-md-4 mt-5 shadow-lg p-3 mb-5 bg-white rounded">
           <CardDeck>
@@ -121,9 +117,9 @@ const ListCourses = () => {
       .catch((ex) => {
         dispatch({ type: COURSES_ERROR });
       }); //end paxios
-  }, []);
+  }, [auth.user._id, dispatch]);
 
-  if (ListElements.length == 0) {
+  if (ListElements.length === 0) {
     return (
       <div>
         <Navbar />
@@ -134,7 +130,7 @@ const ListCourses = () => {
             </h1>
           </Row>
           <Row xs={80} md={80} sm={4} className="justify-content-md-center">
-            <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
+            <img style={{ "max-width": "100%" }} src={imgLessons} alt="imagen cursos" rounded />
           </Row>
           <Row>
             <h2 className="mx-auto">¡Inscribirte ya!</h2>

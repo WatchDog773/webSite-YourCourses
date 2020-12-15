@@ -99,7 +99,7 @@ const AddLesson = () => {
                   este caso te recomendamos Google Drive
                 </h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso1.jpeg" />
+                <img style={{ "max-width": "100%" }} src="assets/paso1.jpeg" alt="imagen cursos" />
               </Container>
             </Card>
 
@@ -110,7 +110,7 @@ const AddLesson = () => {
                   compartir
                 </h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso2.png" />
+                <img style={{ "max-width": "100%" }} src="assets/paso2.png" alt="Añadir leccion" />
               </Container>
             </Card>
 
@@ -121,7 +121,7 @@ const AddLesson = () => {
                   continuacion
                 </h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso3.PNG" />
+                <img style={{ "max-width": "100%" }} src="assets/paso3.PNG" alt="Añadir leccion" />
               </Container>
             </Card>
 
@@ -133,7 +133,7 @@ const AddLesson = () => {
                   Cualquier persona con el enlace como se muestra a continuacion
                 </h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso4.PNG" />
+                <img style={{ "max-width": "100%" }} src="assets/paso4.PNG" alt="Añadir leccion" />
               </Container>
             </Card>
 
@@ -144,7 +144,7 @@ const AddLesson = () => {
                   copiar el enlace al portapapeles
                 </h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso5.PNG" />
+                <img style={{ "max-width": "100%" }} src="assets/paso5.PNG" alt="Añadir leccion" />
               </Container>
             </Card>
 
@@ -152,7 +152,7 @@ const AddLesson = () => {
               <Container>
                 <h2>Haga clic en listo para confirmar los cambios</h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso6.PNG" />
+                <img style={{ "max-width": "100%" }} src="assets/paso6.PNG" alt="Añadir leccion"/>
               </Container>
             </Card>
 
@@ -163,7 +163,7 @@ const AddLesson = () => {
                   principio de esta pagina
                 </h2>
 
-                <img style={{ "max-width": "100%" }} src="assets/paso7.PNG" />
+                <img style={{ "max-width": "100%" }} src="assets/paso7.PNG" alt="Añadir leccion" />
               </Container>
             </Card>
           </Container>

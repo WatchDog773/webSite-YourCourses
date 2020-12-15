@@ -3,8 +3,7 @@ import { paxios } from "../../utilities/Axios";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
-import { Card, Container, Button } from "react-bootstrap";
-import axios from "axios";
+import { Card, Button } from "react-bootstrap";
 
 import {
   COURSES_LOADING,
@@ -19,7 +18,7 @@ const ListCourses = () => {
   const history = useHistory();
 
   const ListElements = courses.courses.map((o) => {
-    if (auth.user.email != o.author) {
+    if (auth.user.email !== o.author) {
       return (
         <div className="col-md-4 shadow-lg p-3 mb-5 bg-white rounded">
           <CardDeck>
@@ -110,7 +109,7 @@ const ListCourses = () => {
       .catch((ex) => {
         dispatch({ type: COURSES_ERROR });
       }); //end paxios
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container">

@@ -36,7 +36,7 @@ const ListCourses = () => {
       .catch((ex) => {
         dispatch({ type: COURSES_ERROR });
       }); //end paxios
-  }, []);
+  }, [auth.user.email, dispatch]);
 
   let ListElements = [];
   ListElements = courses.courses.map((o) => {
@@ -86,7 +86,7 @@ const ListCourses = () => {
   });
 
   console.log("Mis courses vienen: ", ListElements.length);
-  if (ListElements.length == 0) {
+  if (ListElements.length === 0) {
     return (
       <div>
         <Navbar />
@@ -95,7 +95,7 @@ const ListCourses = () => {
             <h1 className="mx-auto mt-5">Aun no tienes cursos</h1>
           </Row>
           <Row xs={80} md={80} sm={4} className="justify-content-md-center">
-            <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
+            <img style={{ "max-width": "100%" }} src={imgLessons} alt="imagen cursos" rounded />
           </Row>
           <Row>
             <h2 className="mx-auto">¡Crea un curso ya!</h2>

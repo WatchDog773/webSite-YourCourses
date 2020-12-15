@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useStateContext } from "../../utilities/Context";
 import BackToLogin from "../common/ButtonBackLogin";
 import ButtonExit from "../common/ButtonExit";
 
-import { Navbar, Nav, Button } from "react-bootstrap";
-//import Mystyles from "./Mystyle";
+import { Navbar, Nav } from "react-bootstrap";
+
 
 const NavBar = () => {
   const [{ auth }] = useStateContext();

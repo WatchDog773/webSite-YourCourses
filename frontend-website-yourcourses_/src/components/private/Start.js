@@ -4,7 +4,6 @@ import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
 
 const Start = () => {
-  const [{ auth }] = useStateContext();
   return (
     <div>
       <Navbar />

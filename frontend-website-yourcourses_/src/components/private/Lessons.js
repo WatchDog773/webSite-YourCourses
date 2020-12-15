@@ -1,6 +1,6 @@
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
-import { useEffect, useState, Link } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
 import { Card, Container, Button, Row } from "react-bootstrap";
@@ -30,10 +30,10 @@ const ListCourses = () => {
   for (const i in cour) {
     //console.log(doc.lessons[i]);
 
-    if (cour[i]._id == _id) {
+    if (cour[i]._id === _id) {
       //console.log("Encontre el curso: ", cour[i]);
       for (const j in cour[i].inscriptions) {
-        if (cour[i].inscriptions[j] == auth.user._id) {
+        if (cour[i].inscriptions[j] === auth.user._id) {
           //console.log("Encontre la inscription: ", cour[i].inscriptions[j]);
           vInscription = true;
         } else {
@@ -65,7 +65,7 @@ const ListCourses = () => {
       .catch((ex) => {
         dispath({ type: LESSONS_ERROR });
       }); //end paxios
-  }, []);
+  }, [_id, dispath]);
 
   let ListElements = [];
   ListElements = lessons.lessons.map((o) => {
@@ -84,7 +84,7 @@ const ListCourses = () => {
         </CardDeck>
       );
     } else {
-      if (pertCourse == auth.user.email) {
+      if (pertCourse === auth.user.email) {
         return (
           <CardDeck>
             <Card className="text-center m-3">
@@ -120,8 +120,8 @@ const ListCourses = () => {
 
   console.log("El falso o verdadero: ");
 
-  if (pertCourse == auth.user.email) {
-    if (ListElements.length == 0) {
+  if (pertCourse === auth.user.email) {
+    if (ListElements.length === 0) {
       return (
         <div>
           <Navbar />
@@ -130,7 +130,7 @@ const ListCourses = () => {
               <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
             </Row>
             <Row xs={80} md={80} sm={4} className="justify-content-md-center">
-              <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
+              <img style={{ "max-width": "100%" }} src={imgLessons} alt="I" rounded />
             </Row>
             <Row>
               <h2 className="mx-auto">Vuelve mas tarde</h2>
@@ -151,7 +151,7 @@ const ListCourses = () => {
   } else {
     if (vInscription) {
       console.log("Paso aqui al si true");
-      if (ListElements.length == 0) {
+      if (ListElements.length === 0) {
         return (
           <div>
             <Navbar />
@@ -160,7 +160,7 @@ const ListCourses = () => {
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
               <Row xs={80} md={80} sm={4} className="justify-content-md-center">
-                <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
+                <img style={{ "max-width": "100%" }} src={imgLessons} alt="Imagen curso" rounded />
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
@@ -180,7 +180,7 @@ const ListCourses = () => {
       }
     } else {
       console.log("paso al if si false");
-      if (ListElements.length == 0) {
+      if (ListElements.length === 0) {
         return (
           <div>
             <Navbar />
@@ -189,7 +189,7 @@ const ListCourses = () => {
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
               <Row xs={80} md={80} sm={4} className="justify-content-md-center">
-                <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
+                <img style={{ "max-width": "100%" }} src={imgLessons} alt="imagen cursos "rounded />
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
