@@ -38,7 +38,8 @@ const ListCourses = () => {
 
   const ListElements = courses.courses.map((o) => {
     return (
-      <CardDeck>
+      <div className="shadow-lg p-3 mb-5 bg-white rounded">
+        <CardDeck>
         <Card className="text-center m-3">
           <Card.Footer></Card.Footer>
           <Card.Body>
@@ -77,6 +78,7 @@ const ListCourses = () => {
           </Card.Body>
         </Card>
       </CardDeck>
+      </div>
     );
   });
 
