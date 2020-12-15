@@ -18,7 +18,7 @@ const NotFound = () => {
           <h1 className="mx-auto mt-5">Oops!</h1>
         </Row>
         <Row xs={50} md={50} sm={4}  className="justify-content-md-center" >
-            <img src={imgNotFound} rounded/> 
+            <img tyle={{ "max-width": "100%" }} src={imgNotFound} rounded/> 
         </Row>
         <Row>
           <h2 className="mx-auto">No lo pudimos encontrar</h2>
