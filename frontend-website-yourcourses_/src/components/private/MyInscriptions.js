@@ -119,8 +119,10 @@ const ListCourses = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">{ListElements}</div>
+    <div >
+      <Navbar />
+      <Container>{ListElements}</Container>
+      <Footer />
     </div>
   );
 };

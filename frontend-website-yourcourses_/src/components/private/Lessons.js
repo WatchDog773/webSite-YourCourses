@@ -3,7 +3,11 @@ import { paxios } from "../../utilities/Axios";
 import { useEffect, useState, Link } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Row } from "react-bootstrap";
+
+import Navbar from "../common/Navbar";
+import Footer from "../common/Footer";
+import imgLessons from "./Lessons.png";
 
 import {
   LESSONS_LOADING,
@@ -95,15 +99,28 @@ const ListCourses = () => {
     if (ListElements.length == 0) {
       return (
         <div>
+          <Navbar />
           <Container>
-            <h2>No hay lecciones aún</h2>
+
+              <Row>
+                <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
+              </Row>
+              <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
+                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+              </Row>
+              <Row>
+                <h2 className="mx-auto">Vuelve mas tarde</h2>
+              </Row>
           </Container>
+          <Footer />
         </div>
       );
     } else {
       return (
         <div>
+          <Navbar />
           <Container>{ListElements}</Container>
+          <Footer />
         </div>
       );
     }
@@ -113,15 +130,27 @@ const ListCourses = () => {
       if (ListElements.length == 0) {
         return (
           <div>
-            <Container>
-              <h2>No hay lecciones aún</h2>
-            </Container>
-          </div>
+          <Navbar />
+          <Container>
+              <Row>
+                <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
+              </Row>
+              <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
+                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+              </Row>
+              <Row>
+                <h2 className="mx-auto">Vuelve mas tarde</h2>
+              </Row>
+          </Container>
+          <Footer />
+        </div>
         );
       } else {
         return (
           <div>
+            <Navbar />
             <Container>{ListElements}</Container>
+            <Footer />
           </div>
         );
       }
@@ -130,14 +159,25 @@ const ListCourses = () => {
       if (ListElements.length == 0) {
         return (
           <div>
+          <Navbar />
             <Container>
-              <h2>No hay lecciones aún</h2>
-            </Container>
-          </div>
+              <Row>
+                <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
+              </Row>
+              <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
+                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+              </Row>
+              <Row>
+                <h2 className="mx-auto">Vuelve mas tarde</h2>
+              </Row>
+          </Container>
+          <Footer />
+        </div>
         );
       } else {
         return (
           <div>
+            <Navbar />
             <Container>
               <Card>
                 <Button
@@ -157,6 +197,7 @@ const ListCourses = () => {
               </Card>
               {ListElements}
             </Container>
+            <Footer />
           </div>
         );
       }
