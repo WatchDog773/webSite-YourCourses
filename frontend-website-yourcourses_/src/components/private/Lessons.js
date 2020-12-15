@@ -24,6 +24,29 @@ const ListCourses = () => {
   let vInscription = null;
   // var [vInscription, seti] = useState(false);
 
+  // TODO: AQUI ESTA EL FOR
+  const cour = courses.courses;
+  let pertCourse = "";
+  for (const i in cour) {
+    //console.log(doc.lessons[i]);
+
+    if (cour[i]._id == _id) {
+      //console.log("Encontre el curso: ", cour[i]);
+      for (const j in cour[i].inscriptions) {
+        if (cour[i].inscriptions[j] == auth.user._id) {
+          //console.log("Encontre la inscription: ", cour[i].inscriptions[j]);
+          vInscription = true;
+        } else {
+          console.log("No encontre la inscripcion");
+        }
+      }
+
+      pertCourse = cour[i].author;
+    } else {
+      console.log("No encontre el curso :o");
+    }
+  }
+
   useEffect(() => {
     // paxios
     //   .get(`/api/courses/${_id}/inscription/${auth.user._id}`)
@@ -46,54 +69,40 @@ const ListCourses = () => {
 
   let ListElements = [];
   ListElements = lessons.lessons.map((o) => {
-    return (
-      <CardDeck>
-        <Card className="text-center m-3">
-          <Card.Body>
-            <Card.Title>{o.name}</Card.Title>
-            <Card.Text>{o.description}</Card.Text>
-            <Button target="_blank" href={o.video}>
-              Ver video
-            </Button>
-          </Card.Body>
-        </Card>
-      </CardDeck>
-    );
+    if (vInscription) {
+      return (
+        <CardDeck>
+          <Card className="text-center m-3">
+            <Card.Body>
+              <Card.Title>{o.name}</Card.Title>
+              <Card.Text>{o.description}</Card.Text>
+              <Button target="_blank" href={o.video}>
+                Ver video
+              </Button>
+            </Card.Body>
+          </Card>
+        </CardDeck>
+      );
+    } else {
+      return (
+        <CardDeck>
+          <Card className="text-center m-3">
+            <Card.Body>
+              <Card.Title>{o.name}</Card.Title>
+              <Card.Text>{o.description}</Card.Text>
+              {/*               <Button target="_blank" href={o.video}>
+                Ver video
+              </Button> */}
+              <Card.Text>Inscribite para ver las lecciones</Card.Text>
+            </Card.Body>
+          </Card>
+        </CardDeck>
+      );
+    }
   });
   //const cour = courses.courses[2].inscriptions.length;
-  const cour = courses.courses;
-  let pertCourse = "";
 
-  for (const i in cour) {
-    //console.log(doc.lessons[i]);
-
-    if (cour[i]._id == _id) {
-      //console.log("Encontre el curso: ", cour[i]);
-      for (const j in cour[i].inscriptions) {
-        if (cour[i].inscriptions[j] == auth.user._id) {
-          //console.log("Encontre la inscription: ", cour[i].inscriptions[j]);
-          vInscription = true;
-        } else {
-          console.log("No encontre la inscripcion");
-        }
-      }
-
-      pertCourse = cour[i].author;
-    } else {
-      console.log("No encontre el curso :o");
-    }
-
-    /*     if (courses[i].id == lessonId) {
-      //console.log(doc.lessons[i]);
-      return doc.lessons[i];
-    } */
-  }
-  //console.log(courses.courses);
-  // console.log("Curso", " ", cour);
-
-  //console.log("Elementos: ", ListElements.length);
   console.log("El falso o verdadero: ");
-  // console.log("Este curso le pertenece a: ", pertCourse);
 
   if (pertCourse == auth.user.email) {
     if (ListElements.length == 0) {
@@ -101,16 +110,15 @@ const ListCourses = () => {
         <div>
           <Navbar />
           <Container>
-
-              <Row>
-                <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
-              </Row>
-              <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
-                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
-              </Row>
-              <Row>
-                <h2 className="mx-auto">Vuelve mas tarde</h2>
-              </Row>
+            <Row>
+              <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
+            </Row>
+            <Row xs={80} md={80} sm={4} className="justify-content-md-center">
+              <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
+            </Row>
+            <Row>
+              <h2 className="mx-auto">Vuelve mas tarde</h2>
+            </Row>
           </Container>
           <Footer />
         </div>
@@ -130,20 +138,20 @@ const ListCourses = () => {
       if (ListElements.length == 0) {
         return (
           <div>
-          <Navbar />
-          <Container>
+            <Navbar />
+            <Container>
               <Row>
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
-              <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
-                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+              <Row xs={80} md={80} sm={4} className="justify-content-md-center">
+                <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
               </Row>
-          </Container>
-          <Footer />
-        </div>
+            </Container>
+            <Footer />
+          </div>
         );
       } else {
         return (
@@ -159,20 +167,20 @@ const ListCourses = () => {
       if (ListElements.length == 0) {
         return (
           <div>
-          <Navbar />
+            <Navbar />
             <Container>
               <Row>
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
-              <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
-                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+              <Row xs={80} md={80} sm={4} className="justify-content-md-center">
+                <img style={{ "max-width": "100%" }} src={imgLessons} rounded />
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
               </Row>
-          </Container>
-          <Footer />
-        </div>
+            </Container>
+            <Footer />
+          </div>
         );
       } else {
         return (
