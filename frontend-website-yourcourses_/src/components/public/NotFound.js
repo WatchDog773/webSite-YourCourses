@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Button } from "react-bootstrap";
+import Navbar from "../common/Navbar";
+import Footer from "../common/Footer";
 
 const NotFound = () => {
   let [redirect, setRedirect] = useState("");
@@ -9,6 +11,7 @@ const NotFound = () => {
   }
   return (
     <div>
+      <Navbar />
       <Container>
         <Row>
           <h1 className="mx-auto mt-5">Oops!</h1>
@@ -31,6 +34,7 @@ const NotFound = () => {
           </div>
         </Row>
       </Container>
+      <Footer />
     </div>
   );
 };
