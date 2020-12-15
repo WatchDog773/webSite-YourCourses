@@ -21,15 +21,15 @@ const ListCourses = () => {
   const ListElements = courses.courses.map((o) => {
     if (auth.user.email != o.author) {
       return (
-        <CardDeck>
-          <Card className="text-center m-3">
-            <Card.Footer></Card.Footer>
+        <div className="col-md-4">
+          <CardDeck>
+          <Card className="text-center mt-2">
             <Card.Body>
               <Card.Title>{o.name}</Card.Title>
               <Card.Text>{o.author}</Card.Text>
               <Card.Text>{o.description}</Card.Text>
               <Card.Text>{o.information}</Card.Text>
-            </Card.Body>
+            </Card.Body>  
             <Card.Footer>
               <small className="text-muted">$ {o.price}</small>
             </Card.Footer>
@@ -48,12 +48,13 @@ const ListCourses = () => {
             </Card.Body>
           </Card>
         </CardDeck>
+        </div>
       );
     } else {
       return (
-        <CardDeck>
-          <Card className="text-center m-3">
-            <Card.Footer></Card.Footer>
+        <div className="col-md-4">
+          <CardDeck>
+          <Card className="text-center mt-2 ml-2">
             <Card.Body>
               <Card.Title>{o.name}</Card.Title>
               <Card.Text>{o.author}</Card.Text>
@@ -90,6 +91,7 @@ const ListCourses = () => {
             </Card.Body>
           </Card>
         </CardDeck>
+        </div>
       );
     }
   });
@@ -109,8 +111,11 @@ const ListCourses = () => {
   }, []);
 
   return (
-    <div>
-      <Container>{ListElements}</Container>
+    <div className="container">
+      <div className="row">
+      {ListElements}
+      </div>
+      
     </div>
   );
 };
