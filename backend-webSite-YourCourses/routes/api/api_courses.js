@@ -45,4 +45,12 @@ router.put(
   coursesController.subscribe
 );
 
+// Nuevos
+
+router.get(
+  "/:idCourse/inscription/:idUser",
+  securityConfig.verifyUser,
+  coursesController.verifySubscription
+);
+
 module.exports = router;

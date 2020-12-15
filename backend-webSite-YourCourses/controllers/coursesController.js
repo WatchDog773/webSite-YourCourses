@@ -72,6 +72,7 @@ exports.createCourse = async (req, res, next) => {
         information,
         image,
         price,
+        inscriptions: [],
         stateCourse: "Active",
       });
       res.status(200).json({ message: "Creado con éxito" });
@@ -243,6 +244,20 @@ exports.mysubscrib = async (req, res, next) => {
     const result = await modelCourses.findSubscribe(userId);
     console.log(result);
     res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Algo salio mal, contacte con el administrador" });
+  }
+};
+
+exports.verifySubscription = async (req, res, next) => {
+  try {
+    const { idCourse, idUser } = req.params;
+    const result = await modelCourses.verifySubs(idCourse, idUser);
+    res.status(200).json(result);
+    console.log("Console.log : ", result);
   } catch (error) {
     console.log(error);
     res
