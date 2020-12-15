@@ -3,6 +3,10 @@ import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
 import { useHistory } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
+
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
+
 import {
   LESSONS_ERROR,
   LESSONS_LOADED,
@@ -60,8 +64,10 @@ const OneCourse = () => {
     //   </Container>
     // </div>
     <div>
+      <Navbar />
       <ButtonGeneral ruta="/courses" contenido="Atras" />
       <Container>{ListElements}</Container>
+      <Footer />
     </div>
   );
 };

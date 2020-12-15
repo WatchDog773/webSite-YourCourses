@@ -1,4 +1,5 @@
 import NavBar from "../common/Navbar";
+import Footer from "../common/Footer";
 import { Button, Form, Container, Card } from "react-bootstrap";
 
 import { LESSONS_RESET } from "../../utilities/store/reducers/lessons.reducer";
@@ -87,6 +88,7 @@ const AddLesson = () => {
           </Form>
         </Card>
       </Container>
+      <Footer />
     </div>
   );
 };

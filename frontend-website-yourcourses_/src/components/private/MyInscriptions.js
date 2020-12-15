@@ -1,11 +1,15 @@
 // /inscription/:userId
+
 import { useStateContext } from "../../utilities/Context";
 import { paxios } from "../../utilities/Axios";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CardDeck from "react-bootstrap/CardDeck";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Form } from "react-bootstrap";
 import axios from "axios";
+
+import Footer from "../common/Footer";
+import Navbar from "../common/Navbar";
 
 import {
   COURSES_LOADING,
@@ -18,7 +22,7 @@ import {
 const ListCourses = () => {
   const [{ auth, courses }, dispatch] = useStateContext();
   const history = useHistory();
-
+  
   const ListElements = courses.courses.map((o) => {
     if (auth.user.email != o.author) {
       return (
@@ -112,6 +116,7 @@ const ListCourses = () => {
   }, []);
 
   return (
+
     <div className="container">
       <div className="row">
       {ListElements}
