@@ -52,14 +52,26 @@ const LogIn = () => {
     axios
       .post("/api/auth/login", { email, password })
       .then(({ data }) => {
-        //console.log(data);
+        console.log("Largo del data loggin", data.length);
         dispath({ type: LOGIN_SUCCESS, payload: data });
         setJWT(data.jwt);
         routeHistory.replace(from);
       })
       .catch((error) => {
         dispath({ type: LOGIN_FETCHING_FAILED });
-        console.log(error);
+        /*// console.log(error.code);
+        console.log(JSON.stringify(error));
+        alert(error.message); */
+        const err = { error };
+        const ee = err.error.request.status;
+
+        if (ee == 403) {
+          alert("Usuario y/o contraseña incorrectos");
+        } else if (ee == 400) {
+          alert("Complete los campos para poder ingresar");
+        } else {
+          console.log(error);
+        }
       });
   };
 
@@ -155,9 +167,7 @@ const LogIn = () => {
         <div className="panel left-panel">
           <div className="content">
             <h3>¿ Nuevo aquí ?</h3>
-            <p>
-              Aprende desde casa y con tu celular con Your Courses
-            </p>
+            <p>Aprende desde casa y con tu celular con Your Courses</p>
             <ButtonGeneral ruta="/signup" contenido="Crear cuenta" />
           </div>
           <img src={imgLogin} className="image" alt="imagen del login" />
