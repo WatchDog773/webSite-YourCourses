@@ -47,6 +47,8 @@ const ListCourses = () => {
         <Card className="text-center m-3">
           <Card.Body>
             <Card.Title>{o.name}</Card.Title>
+            <Card.Text>{o.description}</Card.Text>  
+            <Card.Text>{o.video}</Card.Text>  
           </Card.Body>
         </Card>
       </CardDeck>
