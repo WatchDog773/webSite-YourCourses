@@ -101,12 +101,12 @@ const ListCourses = () => {
         <div>
           <Navbar />
           <Container>
-            
+
               <Row>
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
               <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
-                    <img tyle={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
@@ -136,7 +136,7 @@ const ListCourses = () => {
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
               <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
-                    <img tyle={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
@@ -165,7 +165,7 @@ const ListCourses = () => {
                 <h1 className="mx-auto mt-5">No hay lecciones aún</h1>
               </Row>
               <Row xs={80} md={80} sm={4}  className="justify-content-md-center" >
-                    <img tyle={{ "max-width": "100%" }} src={imgLessons} rounded/> 
+                    <img style={{ "max-width": "100%" }} src={imgLessons} rounded/> 
               </Row>
               <Row>
                 <h2 className="mx-auto">Vuelve mas tarde</h2>
