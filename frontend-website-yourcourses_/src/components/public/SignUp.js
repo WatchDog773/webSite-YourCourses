@@ -117,10 +117,9 @@ const SingUp = () => {
       <div className="panels-container1">
         <div className="panel left-panel">
           <div className="content">
-            <h3>¿ Uno de nosotros?</h3>
+            <h3>¿Ya eres uno de nosotros?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+            Ingresa tus credenciales para poder disfrutar todo lo que Your Courses te ofrece.
             </p>
             <ButtonGeneral contenido="Iniciar Sesión" ruta="/login" />
           </div>
